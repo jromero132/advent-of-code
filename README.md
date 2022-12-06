@@ -1,1 +1,1 @@
-# Solutions to Advent of Ccode challenges
+# Solutions to Advent of Code challenges
