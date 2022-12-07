@@ -2,8 +2,8 @@ from pathlib import Path
 
 
 TESTS_FOLDER = "tests"
-EXAMPLE_TEST_CASES = 1
-RUN_EXAMPLES = True
+EXAMPLE_TEST_CASES = 5
+RUN_EXAMPLES = False
 MAIN_TEST_CASES = 1
 RUN_MAIN = True
 LOG = True
@@ -19,7 +19,7 @@ def read_input(in_file: Path) -> str:
 
 
 def parse_input(in_text: str) -> list:
-    return in_text.split("\n")
+    return [int(x) for x in in_text.split(",")]  # get the input
 
 
 def write_output(out_file: Path, output: str):
@@ -27,8 +27,22 @@ def write_output(out_file: Path, output: str):
         return f.write(output)
 
 
-def solve(in_parsed) -> str:
-    return ""
+def solve(memory) -> str:
+    memory[1], memory[2] = 12, 2
+    i = 0
+    while i < len(memory):
+        match memory[i]:
+            case 1:
+                memory[memory[i + 3]] = memory[memory[i + 1]] + memory[memory[i + 2]]
+
+            case 2:
+                memory[memory[i + 3]] = memory[memory[i + 1]] * memory[memory[i + 2]]
+
+            case 99:
+                break
+
+        i += 4
+    return str(memory[0])
 
 
 def run_case(in_file: Path, out_file: Path):
