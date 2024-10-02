@@ -88,6 +88,11 @@ def convert_html_to_markdown(tag):
                 tag.insert_after(style)
                 tag.unwrap()
 
+            case "s":
+                tag.insert_before("~~")
+                tag.insert_after("~~")
+                tag.unwrap()
+
             case "a":
                 tag.insert_before("[")
                 tag.insert_after(f']({tag["href"]})')
@@ -152,7 +157,7 @@ def create(args: Namespace):
     mds = get_markdown(args.year, args.day)
 
     for i, md in enumerate(mds, start=1):
-        task_dir = TASK_PATH.format(year=args.year, day=args.day, task=args.task)
+        task_dir = Path(TASK_PATH.format(year=args.year, day=args.day, task=i))
 
         task_dir.mkdir(parents=True, exist_ok=True)
 
