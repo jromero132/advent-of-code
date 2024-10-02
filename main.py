@@ -11,6 +11,7 @@ parsing to handle user inputs effectively.
 import argparse
 import inspect
 import os
+import platform
 import subprocess
 import sys
 from datetime import date
@@ -218,7 +219,6 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 tag.unwrap()
 
             case "em":
-                # style = "**" if tag.has_attr("class") and "star" in tag["class"] else "*"
                 style = "**"
                 tag.insert_before(style)
                 tag.insert_after(style)
@@ -235,8 +235,6 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 tag.unwrap()
 
             case "span":
-                # tag.insert_before("*")
-                # tag.insert_after("*")
                 nonlocal footnotes
                 footnotes.append(f"[^{len(footnotes) + 1}]: [{tag.text}] {tag['title']}")
                 tag.insert_after(f"[^{len(footnotes)}]")
@@ -248,7 +246,6 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
 
             case "li":
                 tag.insert_before("  - ")
-                # tag.insert_after("\n")
                 tag.unwrap()
 
             case "code":
@@ -263,8 +260,6 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 tag.unwrap()
 
             case "pre":
-                tag.insert_before("")
-                # tag.insert_after("\n")
                 tag.unwrap()
 
             case "article":
@@ -274,7 +269,10 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 raise ValueError(f"Missing condition for tag: {tag.name}")
 
     html_tags_to_markdown(root_tag)
-    return f"{root_tag.text}\n{'\n\n'.join(footnotes)}\n" if footnotes else root_tag.text
+    content = root_tag.text
+    if footnotes:
+        content += "\n" + "\n\n".join(footnotes) + "\n"
+    return content
 
 
 def get_markdown(year: int, day: int) -> list[str]:
@@ -355,11 +353,31 @@ def create_cli(subparsers: argparse._SubParsersAction):
             command parser will be added.
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
-        "create", help="Settings for deploying the project"
+        "create", help="Create a new Advent of Code challenge setup."
     )
-    parser.add_argument("-y", "--year", type=int, default=date.today().year, help="")
-    parser.add_argument("-d", "--day", type=int, required=True, help="")
-    parser.add_argument("-t", "--template", default=None, help="")
+    parser.add_argument(
+        "-y",
+        "--year",
+        type=int,
+        default=date.today().year,
+        help="The year of the Advent of Code challenge (e.g., 2024). Defaults to the current year.",
+    )
+    parser.add_argument(
+        "-d",
+        "--day",
+        type=int,
+        required=True,
+        help="The day of the Advent of Code challenge (e.g., 13). This option is required.",
+    )
+    parser.add_argument(
+        "-t",
+        "--template",
+        default=None,
+        help=(
+            "Specify an optional template file to use as the starting solution to the challenge. "
+            "If not provided, an empty template will be used."
+        ),
+    )
 
 
 def maketests(args: argparse.Namespace):
@@ -396,12 +414,36 @@ def maketests_cli(subparsers: argparse._SubParsersAction):
             'maketests' command parser will be added.
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
-        "maketests", help="Settings for deploying the project"
+        "maketests", help="Create test files for one Advent of Code challenge."
     )
-    parser.add_argument("-y", "--year", type=int, default=date.today().year, help="")
-    parser.add_argument("-d", "--day", type=int, required=True, help="")
-    parser.add_argument("-t", "--task", type=int, required=True, help="")
-    parser.add_argument("-n", "--number", type=int, required=True, help="")
+    parser.add_argument(
+        "-y",
+        "--year",
+        type=int,
+        default=date.today().year,
+        help="The year of the Advent of Code challenge (e.g., 2024). Defaults to the current year.",
+    )
+    parser.add_argument(
+        "-d",
+        "--day",
+        type=int,
+        required=True,
+        help="The day of the Advent of Code challenge (e.g., 13). This option is required.",
+    )
+    parser.add_argument(
+        "-t",
+        "--task",
+        type=int,
+        required=True,
+        help="The task number for which to create test files. This option is required.",
+    )
+    parser.add_argument(
+        "-n",
+        "--number",
+        type=int,
+        required=True,
+        help="The number of test files to create. This option is required.",
+    )
 
 
 def test(args: argparse.Namespace):
@@ -462,10 +504,18 @@ def test(args: argparse.Namespace):
 
             print(f"Answer={font_color_blue(ans_decoded)}")
 
-            if os.name == "nt":  # Windows
-                subprocess.run("clip", text=True, input=ans_decoded)
+            match platform.system():
+                case "Windows":
+                    subprocess.run("clip", text=True, input=ans_decoded)
 
-            # TODO: Continue working on copying the solution to clipboard for other OSs.
+                case "Linux":  # NOTE: xclip needs to be installed
+                    subprocess.run("xclip", text=True, input=ans_decoded)
+
+                case (
+                    _
+                ):  # TODO: Continue working on copying the solution to clipboard for other OSs.
+                    # It seems that for MacOS pbcopy should do the work
+                    pass
 
     else:
         print(
@@ -487,13 +537,41 @@ def test_cli(subparsers: argparse._SubParsersAction):
             command parser will be added.
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
-        "test", help="Settings for deploying the project"
+        "test", help="Run tests for one Advent of Code challenge."
     )
-    parser.add_argument("-y", "--year", type=int, default=date.today().year, help="")
-    parser.add_argument("-d", "--day", type=int, required=True, help="")
-    parser.add_argument("-t", "--task", type=int, required=True, help="")
-    parser.add_argument("-c", "--continue-on-failure", action="store_true", help="")
-    parser.add_argument("-s", "--solve", action="store_true", help="")
+    parser.add_argument(
+        "-y",
+        "--year",
+        type=int,
+        default=date.today().year,
+        help="The year of the Advent of Code challenge (e.g., 2024). Defaults to the current year.",
+    )
+    parser.add_argument(
+        "-d",
+        "--day",
+        type=int,
+        required=True,
+        help="The day of the Advent of Code challenge (e.g., 13). This option is required.",
+    )
+    parser.add_argument(
+        "-t",
+        "--task",
+        type=int,
+        required=True,
+        help="The task number to test. This option is required.",
+    )
+    parser.add_argument(
+        "-c",
+        "--continue-on-failure",
+        action="store_true",
+        help="Continue running tests even if some fail.",
+    )
+    parser.add_argument(
+        "-s",
+        "--solve",
+        action="store_true",
+        help="Solve the task after running tests, in case all tests passed.",
+    )
 
 
 def parse_args() -> argparse.Namespace:
@@ -507,7 +585,12 @@ def parse_args() -> argparse.Namespace:
         argparse.Namespace: The parsed command-line arguments.
     """
     parser = argparse.ArgumentParser(
-        "qwerty", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        "aoc",
+        description=(
+            "A command-line application for managing and testing Advent of Code challenges, "
+            "featuring modular subcommands for various tasks and easy argument parsing."
+        ),
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
     subparsers = parser.add_subparsers(dest="command")
