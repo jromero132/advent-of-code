@@ -1,0 +1,72 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args:
+          - --maxkb=500
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args:
+          - --fix=lf
+      - id: trailing-whitespace
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        files: ".*"
+        args:
+          - --profile=black
+          - --project=telegram-auto-texter
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+        files: ".*"
+        additional_dependencies:
+          - types-beautifulsoup4
+          - types-pyyaml
+          - types-requests
+        exclude: "year"
+
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        args:
+          - --convention=google
+        exclude: "docs|tests|year"
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.17.0
+    hooks:
+      - id: pyupgrade
+        args:
+          - --py310-plus
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.8
+    hooks:
+      - id: ruff
+        args:
+          - --fix
+          - --exit-non-zero-on-fix
+          - --show-fixes
+          - --line-length=100
+        exclude: "year"
+      - id: ruff-format
+        args:
+          - --line-length=100
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        exclude: "tests"

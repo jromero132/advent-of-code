@@ -1,3 +1,4 @@
 beautifulsoup4>=4.12.3,<4.13
 requests>=2.32.3,<2.33
+pre-commit>=3.8,<3.9
 python-dotenv>=1.0.1,<1.1
