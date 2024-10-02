@@ -116,14 +116,14 @@ def convert_html_to_markdown(tag):
                 tag.unwrap()
 
             case "code":
-                # if "\n" in tag.text:
-                #     tag.insert_before("```\n")
-                #     tag.insert_after("\n```")
-                # else:
-                #     tag.insert_before("`")
-                #     tag.insert_after("`")
-                tag.insert_before("`")
-                tag.insert_after("`")
+                if "\n" in tag.text:
+                    tag.insert_before("```\n")
+                    tag.insert_after("```")
+
+                else:
+                    tag.insert_before("`")
+                    tag.insert_after("`")
+
                 tag.unwrap()
 
             case "pre":
