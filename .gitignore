@@ -1,2 +1,11 @@
-# vscode settings
+# Python venv
+.venv
+
+# VSCode settings
 .vscode
+
+# Advent of Code Owner Proof
+.ownerproof
+
+# Environment variables
+.env
