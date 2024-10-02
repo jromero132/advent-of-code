@@ -11,7 +11,7 @@ parsing to handle user inputs effectively.
 import argparse
 import inspect
 import os
-import platform
+import pyperclip
 import subprocess
 import sys
 from datetime import date
@@ -464,7 +464,7 @@ def test(args: argparse.Namespace):
 
     def get_code_output(sol_file: Path, inp: Path) -> bytes:
         with open(inp, encoding="utf-8") as in_file:
-            return subprocess.check_output(["py", str(sol_file)], stdin=in_file).strip()
+            return subprocess.check_output(["python", str(sol_file)], stdin=in_file).strip()
 
     day_dir = Path(DAY_PATH.format(year=args.year, day=args.day)).absolute()
     task_dir = Path(TASK_PATH.format(year=args.year, day=args.day, task=args.task)).absolute()
@@ -503,19 +503,7 @@ def test(args: argparse.Namespace):
                 f.write("\n")
 
             print(f"Answer={font_color_blue(ans_decoded)}")
-
-            match platform.system():
-                case "Windows":
-                    subprocess.run("clip", text=True, input=ans_decoded)
-
-                case "Linux":  # NOTE: xclip needs to be installed
-                    subprocess.run("xclip", text=True, input=ans_decoded)
-
-                case (
-                    _
-                ):  # TODO: Continue working on copying the solution to clipboard for other OSs.
-                    # It seems that for MacOS pbcopy should do the work
-                    pass
+            pyperclip.copy(ans_decoded)
 
     else:
         print(

@@ -6,6 +6,9 @@ In addition, this project contains a command-line application for managing, test
 Advent of Code challenges. This tool allows users to create challenge setups, run tests, generate
 test files, and provides solutions for various tasks.
 
+**Note:** Take into account that if all tests passed and the puzzle is solved, then the output will
+be copied to the clipboard, so it can be easily pasted in the Advent of Code website :)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -21,7 +24,8 @@ test files, and provides solutions for various tasks.
 - **Solutions**: Includes implementations for solving Advent of Code challenges.
 - **Create Challenges**: Set up new Advent of Code challenges for a specified year and day.
 - **Run Tests**: Execute tests for specific tasks with options to continue on failure and solve the
-task in case all tests passed.
+task in case all tests passed. Take into account that if the puzzle is solved, then the output will
+be copied to the clipboard :)
 - **Generate Test Files**: Create multiple test files for a given task.
 
 ## Installation
