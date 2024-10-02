@@ -3,9 +3,12 @@ Author: Jose A. Romero
 Puzzle: Advent of Code (year=`year` ; day=`day` ; task=`task`)
 """
 
+import sys
+
 
 def main():
-    line = input()
+    for line in sys.stdin:
+        pass
 
 
 if __name__ == "__main__":
