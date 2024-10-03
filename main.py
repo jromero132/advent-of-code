@@ -11,7 +11,6 @@ parsing to handle user inputs effectively.
 import argparse
 import inspect
 import os
-import pyperclip
 import subprocess
 import sys
 from datetime import date
@@ -19,6 +18,7 @@ from http import HTTPStatus
 from pathlib import Path
 
 import bs4
+import pyperclip
 import requests
 from dotenv import load_dotenv
 
@@ -324,9 +324,7 @@ def create(args: argparse.Namespace):
 
     for i, md in enumerate(mds, start=1):
         task_dir = Path(TASK_PATH.format(year=args.year, day=args.day, task=i))
-
         task_dir.mkdir(parents=True, exist_ok=True)
-
         with open(task_dir / "description.md", "w", encoding="utf-8") as f:
             f.write(md)
 
@@ -334,6 +332,11 @@ def create(args: argparse.Namespace):
         if not (py_file := task_dir / "main.py").exists():
             with open(py_file, "w", encoding="utf-8") as f:
                 f.write(code_content)
+
+        test_dir = Path(TESTS_PATH.format(year=args.year, day=args.day, task=i))
+        test_dir.mkdir(parents=True, exist_ok=True)
+        (test_dir / "01.in").touch()
+        (test_dir / "01.out").touch()
 
     with open(
         f"{DAY_PATH.format(year=args.year, day=args.day)}/task.in", "w", encoding="utf-8"
