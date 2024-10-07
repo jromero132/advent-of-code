@@ -214,7 +214,7 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 tag.insert_after("\n")
                 tag.unwrap()
 
-            case "p":
+            case "p" | "br":
                 tag.insert_before("\n")
                 tag.unwrap()
 
@@ -245,7 +245,7 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 tag.unwrap()
 
             case "li":
-                tag.insert_before("  - ")
+                tag.insert_before("    - ")
                 tag.unwrap()
 
             case "code":
