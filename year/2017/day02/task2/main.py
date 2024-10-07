@@ -7,6 +7,19 @@ import sys
 
 
 def get_divisible_value(nums: list[int]) -> int:
+    """Find the first pair of numbers in the list that are divisible.
+
+    This function iterates through a list of integers to identify the first pair of numbers where
+    one number is divisible by the other. It returns the result of the division of the larger number
+    by the smaller number.
+
+    Args:
+        nums (list[int]): A list of integers to check for divisibility.
+
+    Returns:
+        int: The result of the division of the two divisible numbers, or None if no such pair
+            exists.
+    """
     for i in range(len(nums)):
         for j in range(i + 1, len(nums)):
             if nums[i] % nums[j] == 0:

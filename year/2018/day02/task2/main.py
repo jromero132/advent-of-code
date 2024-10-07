@@ -7,6 +7,20 @@ import sys
 
 
 def get_solution(line1: str, line2: str) -> str:
+    """Find a common substring by removing one differing character.
+
+    This function compares two strings and returns a new string formed by removing one character
+    from the first string if the two strings differ by exactly one character. If the strings are of
+    different lengths and one starts or ends with the other, it returns the shorter string;
+    otherwise, it returns None.
+
+    Args:
+        line1 (str): The first string to compare.
+        line2 (str): The second string to compare.
+
+    Returns:
+        str: A new string with one character removed if the conditions are met, or None if not.
+    """
     if len(line1) < len(line2):
         line1, line2 = line2, line1
 

@@ -8,6 +8,18 @@ import sys
 
 
 def get_output(memory: list[int]) -> int:
+    """Process a list of integers as a simple instruction set.
+
+    This function interprets a list of integers as a series of instructions, performing addition or
+    multiplication based on the opcode at each step. It modifies the list in place and returns the
+    value at the first position after processing all instructions.
+
+    Args:
+        memory (list[int]): A list of integers representing the instruction set.
+
+    Returns:
+        int: The value at the first position of the modified list after executing the instructions.
+    """
     for i in range(0, len(memory), 4):
         match memory[i]:
             case 1:

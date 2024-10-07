@@ -3,6 +3,7 @@ Author: Jose A. Romero
 Puzzle: Advent of Code (year=2018 ; day=3 ; task=1)
 """
 
+import itertools
 import sys
 
 
@@ -20,10 +21,11 @@ def main():
     grid = [[0] * max_y for _ in range(max_x)]
     ans = 0
     for rectangle in rectangles:
-        for i in range(rectangle[0][0], rectangle[1][0]):
-            for j in range(rectangle[0][1], rectangle[1][1]):
-                grid[i][j] += 1
-                ans += grid[i][j] == 2
+        for i, j in itertools.product(
+            range(rectangle[0][0], rectangle[1][0]), range(rectangle[0][1], rectangle[1][1])
+        ):
+            grid[i][j] += 1
+            ans += grid[i][j] == 2
 
     print(ans)
 

@@ -3,15 +3,32 @@ Author: Jose A. Romero
 Puzzle: Advent of Code (year=2018 ; day=3 ; task=2)
 """
 
+import itertools
 import sys
 
 
-def no_overlaps(grid, rectangle):
-    for i in range(rectangle[0][0], rectangle[1][0]):
-        for j in range(rectangle[0][1], rectangle[1][1]):
-            if grid[i][j] != 1:
-                return False
-    return True
+def no_overlaps(grid: list[list[int]], rectangle: tuple[tuple[int, int], tuple[int, int], int]):
+    """Check if a rectangle does not overlap with any other rectangle in the grid.
+
+    This function determines whether all cells within the specified rectangle in the grid are not
+    occupied by any other rectangle (indicated by a value of 1). It returns True if there are no
+    overlaps, and False if any part of the rectangle overlaps with any other rectangle.
+
+    Args:
+        grid (list[list[int]]): A 2D list representing the grid of occupied spaces.
+        rectangle (tuple[tuple[int, int], tuple[int, int]]): A tuple defining the top-left and
+            bottom-right corners of the rectangle to check.
+
+    Returns:
+        bool: True if the rectangle does not overlap with any other rectangle in the grid.
+    """
+    return all(
+        grid[i][j] == 1
+        for i, j in itertools.product(
+            range(rectangle[0][0], rectangle[1][0]),
+            range(rectangle[0][1], rectangle[1][1]),
+        )
+    )
 
 
 def main():
@@ -28,9 +45,10 @@ def main():
 
     grid = [[0] * max_y for _ in range(max_x)]
     for rectangle in rectangles:
-        for i in range(rectangle[0][0], rectangle[1][0]):
-            for j in range(rectangle[0][1], rectangle[1][1]):
-                grid[i][j] += 1
+        for i, j in itertools.product(
+            range(rectangle[0][0], rectangle[1][0]), range(rectangle[0][1], rectangle[1][1])
+        ):
+            grid[i][j] += 1
 
     for rectangle in rectangles:
         if no_overlaps(grid, rectangle):

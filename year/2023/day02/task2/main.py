@@ -7,6 +7,18 @@ import sys
 
 
 def solve(game: str) -> int:
+    """Calculate the product of the maximum counts of revealed balls by color.
+
+    This function processes a game string to determine the maximum number of balls revealed for each
+    color (red, green, blue) and returns the product of these maximum counts. The game string is
+    formatted as "count color; ..." for each reveal.
+
+    Args:
+        game (str): A string representing the game reveals, formatted as "count color; ...".
+
+    Returns:
+        int: The product of the maximum counts of red, green, and blue balls revealed.
+    """
     color_id = {"red": 0, "green": 1, "blue": 2}
     balls = [0, 0, 0]
     for reveal in game.split(";"):
