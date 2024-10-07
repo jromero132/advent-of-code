@@ -50,7 +50,7 @@ def get_value(op: callable, data: list[str]) -> str:
 
 
 def main():
-    data = [line.strip() for line in sys.stdin.readlines()]
+    data = [line.strip() for line in sys.stdin]
     co2 = get_value(max, data)  # most common bit
     oxygen = get_value(min, data)  # least common bit
     print(int(co2, 2) * int(oxygen, 2))

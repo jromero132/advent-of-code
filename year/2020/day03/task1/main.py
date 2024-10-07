@@ -7,7 +7,7 @@ import sys
 
 
 def main():
-    grid = [line.strip() for line in sys.stdin.readlines()]
+    grid = [line.strip() for line in sys.stdin]
     slope = (1, 3)
     ans, i, j = 0, 0, 0
     while i < len(grid):

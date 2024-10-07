@@ -7,7 +7,7 @@ import sys
 
 
 def main():
-    grid = [line.strip() for line in sys.stdin.readlines()]
+    grid = [line.strip() for line in sys.stdin]
     slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
     ans = 1
     for si, sj in slopes:

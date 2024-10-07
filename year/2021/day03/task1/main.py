@@ -27,7 +27,7 @@ def get_bit(op: callable, idx: int, data: list[str]) -> str:
 
 
 def main():
-    data = [line.strip() for line in sys.stdin.readlines()]
+    data = [line.strip() for line in sys.stdin]
     gamma = "".join(get_bit(max, i, data) for i in range(len(data[0])))  # most common bit
     epsilon = "".join(get_bit(min, i, data) for i in range(len(data[0])))  # least common bit
     print(int(gamma, 2) * int(epsilon, 2))
