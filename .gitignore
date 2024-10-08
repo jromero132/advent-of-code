@@ -1,8 +1,6 @@
-# Python venv
+# Python venv and pycache
 .venv
-
-# VSCode settings
-.vscode
+__pycache__
 
 # Advent of Code Owner Proof
 .ownerproof

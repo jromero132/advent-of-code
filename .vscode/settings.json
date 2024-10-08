@@ -1,0 +1,8 @@
+{
+    "editor.rulers": [
+        100
+    ],
+    "ruff.lineLength": 100,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff"
+}

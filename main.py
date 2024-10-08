@@ -205,6 +205,18 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
     footnotes: list[str] = []
 
     def html_tags_to_markdown(tag: bs4.element.Tag):
+        """Convert HTML tags to Markdown format recursively.
+
+        This function processes an HTML tag and its children, transforming specific HTML elements
+        into their Markdown equivalents. It modifies the tag in place, allowing for a structured
+        representation of the content in Markdown format.
+
+        Args:
+            tag (bs4.element.Tag): The HTML tag to be converted to Markdown.
+
+        Raises:
+            ValueError: If an unsupported HTML tag is encountered.
+        """
         for child in tag.find_all(recursive=False):
             html_tags_to_markdown(child)
 
@@ -466,6 +478,19 @@ def test(args: argparse.Namespace):
     """
 
     def get_code_output(sol_file: Path, inp: Path) -> bytes:
+        """Execute a Python solution file with input from a specified file.
+
+        This function runs a Python script located at `sol_file`, using the contents of `inp` as its
+        standard input. It captures and returns the output of the script as bytes, allowing for
+        further processing or analysis.
+
+        Args:
+            sol_file (Path): The path to the Python solution file to be executed.
+            inp (Path): The path to the input file that provides standard input to the solution.
+
+        Returns:
+            bytes: The output produced by the executed script.
+        """
         with open(inp, encoding="utf-8") as in_file:
             return subprocess.check_output(["python", str(sol_file)], stdin=in_file).strip()
 

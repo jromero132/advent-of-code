@@ -1,0 +1,23 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run solution",
+            "type": "shell",
+            "command": "py ${workspaceFolder}/vscode_tasks/run.py ${file}",
+            "problemMatcher": [
+                "$python"
+            ]
+        },
+        {
+            "label": "Test solution",
+            "type": "shell",
+            "command": "py ${workspaceFolder}/vscode_tasks/test.py ${file}",
+            "problemMatcher": [
+                "$python"
+            ]
+        }
+    ]
+}
