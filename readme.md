@@ -5,7 +5,7 @@
 [![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](https://python.org "Go to Python homepage")
 ![Last commit](https://img.shields.io/github/last-commit/jromero132/advent-of-code "Last commit")
 
-[![AoC 2015](https://img.shields.io/badge/2015-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2015)
+[![AoC 2015](https://img.shields.io/badge/2015-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2015)
 [![AoC 2016](https://img.shields.io/badge/2016-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2016)
 [![AoC 2017](https://img.shields.io/badge/2017-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2017)
 [![AoC 2018](https://img.shields.io/badge/2018-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
@@ -46,7 +46,7 @@ For every year, the Advent of Code calendar has `25` challenges with `2` tasks p
 
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️8  | https://adventofcode.com/2015 |
+| [2015](year/2015) | ⭐️10  | https://adventofcode.com/2015 |
 | [2016](year/2016) | ⭐️8  | https://adventofcode.com/2016 |
 | [2017](year/2017) | ⭐️8  | https://adventofcode.com/2017 |
 | [2018](year/2018) | ⭐️8  | https://adventofcode.com/2018 |
