@@ -10,7 +10,6 @@
 [![AoC 2017](https://img.shields.io/badge/2017-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2017)
 [![AoC 2018](https://img.shields.io/badge/2018-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
 [![AoC 2019](https://img.shields.io/badge/2019-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2019)
-
 [![AoC 2020](https://img.shields.io/badge/2020-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
 [![AoC 2021](https://img.shields.io/badge/2021-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
 [![AoC 2022](https://img.shields.io/badge/2022-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
