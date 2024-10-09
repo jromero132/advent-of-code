@@ -243,13 +243,22 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
 
             case "a":
                 tag.insert_before("[")
-                tag.insert_after(f']({tag["href"]})')
+                tag.insert_after(f"]({tag['href']})")
                 tag.unwrap()
 
             case "span":
-                nonlocal footnotes
-                footnotes.append(f"[^{len(footnotes) + 1}]: [{tag.text}] {tag['title']}")
-                tag.insert_after(f"[^{len(footnotes)}]")
+                if tag.has_attr("title"):
+                    nonlocal footnotes
+                    footnotes.append(f"[^{len(footnotes) + 1}]: [{tag.text}] {tag['title']}")
+                    tag.insert_after(f"[^{len(footnotes)}]")
+
+                elif tag.has_attr("class") and "quiet" in tag["class"]:
+                    tag.insert_before("*")
+                    tag.insert_after("*")
+
+                else:
+                    raise ValueError(f"Missing condition for tag: {tag}")
+
                 tag.unwrap()
 
             case "ul":
@@ -278,7 +287,7 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 pass
 
             case _:
-                raise ValueError(f"Missing condition for tag: {tag.name}")
+                raise ValueError(f"Missing condition for tag: {tag}")
 
     html_tags_to_markdown(root_tag)
     content = root_tag.text
