@@ -6,7 +6,7 @@
         {
             "label": "Run solution",
             "type": "shell",
-            "command": "py ${workspaceFolder}/vscode_tasks/run.py ${file}",
+            "command": "python ${workspaceFolder}/vscode_tasks/run.py ${file}",
             "problemMatcher": [
                 "$python"
             ]
@@ -14,7 +14,7 @@
         {
             "label": "Test solution",
             "type": "shell",
-            "command": "py ${workspaceFolder}/vscode_tasks/test.py ${file}",
+            "command": "python ${workspaceFolder}/vscode_tasks/test.py ${file}",
             "problemMatcher": [
                 "$python"
             ]
