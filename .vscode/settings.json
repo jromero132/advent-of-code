@@ -4,5 +4,8 @@
     ],
     "ruff.lineLength": 100,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "charliermarsh.ruff"
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    }
 }
