@@ -18,6 +18,9 @@
 
 This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
 
+A brief introduction taken from the website:
+> Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
+
 In addition, this project contains a command-line application for managing, testing, and solving
 Advent of Code challenges. This tool allows users to create challenge setups, run tests, generate
 test files, and provides solutions for various tasks.
@@ -61,6 +64,13 @@ For every year, the Advent of Code calendar has `25` challenges with `2` tasks p
 task in case all tests passed. Take into account that if the puzzle is solved, then the output will
 be copied to the clipboard 😄
 - **Generate Test Files**: Create multiple test files for a given task.
+
+The `vscode_tasks` directory along with the `.vscode` directory enhances the development experience
+for Advent of Code solutions by providing utility scripts and configurations specifically designed
+for use within Visual Studio Code. This feature streamlines the process of executing and testing
+solutions, making it easier to validate outputs and manage tasks. This will add a launch
+configuration to run the current open file solution and 2 tasks, one for running the solution and
+the other one for testing the solution.
 
 ## Installation
 
