@@ -7,6 +7,19 @@ import sys
 
 
 def get_param(memory: list[int], idx: int, param: int) -> int:
+    """Retrieve a parameter value from memory based on the given index and parameter mode.
+
+    This function checks the mode of the parameter to determine whether to return the value directly
+    from memory or to dereference it. It supports both immediate and positional parameter modes.
+
+    Args:
+        memory (list[int]): The list representing the memory.
+        idx (int): The current instruction pointer index.
+        param (int): The parameter index to retrieve.
+
+    Returns:
+        int: The value of the parameter based on its mode.
+    """
     return (
         memory[idx + param]
         if (memory[idx] // (10 ** (1 + param))) % 10 == 1
