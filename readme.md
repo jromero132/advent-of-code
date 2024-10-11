@@ -5,7 +5,15 @@
 [![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](https://python.org "Go to Python homepage")
 ![Last commit](https://img.shields.io/github/last-commit/jromero132/advent-of-code "Last commit")
 ---
-{{ badges_of_stars }}
+[![AoC 2015](https://img.shields.io/badge/2015-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2015)
+[![AoC 2016](https://img.shields.io/badge/2016-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2016)
+[![AoC 2017](https://img.shields.io/badge/2017-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2017)
+[![AoC 2018](https://img.shields.io/badge/2018-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
+[![AoC 2019](https://img.shields.io/badge/2019-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2019)  
+[![AoC 2020](https://img.shields.io/badge/2020-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
+[![AoC 2021](https://img.shields.io/badge/2021-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
+[![AoC 2022](https://img.shields.io/badge/2022-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
+[![AoC 2023](https://img.shields.io/badge/2023-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 ---
 This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
 
@@ -35,7 +43,17 @@ be copied to the clipboard, so it can be easily pasted in the Advent of Code web
 
 For every year, the Advent of Code calendar has `25` challenges with `2` tasks per challenge. Every task gives you a star ⭐️ so the maximum amount of stars for a year is `50`.
 
-{{ table_summary_of_years }}
+| Year | Stars | Advent of Code Link |
+| :--: | :---: | :--: |
+| [2015](year/2015) | ⭐️10  | https://adventofcode.com/2015 |
+| [2016](year/2016) | ⭐️10  | https://adventofcode.com/2016 |
+| [2017](year/2017) | ⭐️10  | https://adventofcode.com/2017 |
+| [2018](year/2018) | ⭐️10  | https://adventofcode.com/2018 |
+| [2019](year/2019) | ⭐️10  | https://adventofcode.com/2019 |
+| [2020](year/2020) | ⭐️10  | https://adventofcode.com/2020 |
+| [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
+| [2022](year/2022) | ⭐️8  | https://adventofcode.com/2022 |
+| [2023](year/2023) | ⭐️8  | https://adventofcode.com/2023 |
 
 ## Features
 
