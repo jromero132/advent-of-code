@@ -18,6 +18,14 @@
             "problemMatcher": [
                 "$python"
             ]
+        },
+        {
+            "label": "Update AoC stars in readme.md",
+            "type": "shell",
+            "command": "python ${workspaceFolder}/vscode_tasks/update_readme_stars.py",
+            "problemMatcher": [
+                "$python"
+            ]
         }
     ]
 }
