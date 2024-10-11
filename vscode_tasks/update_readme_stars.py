@@ -68,16 +68,16 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]):
     """
     print(f"Updating `{path}` file with stars_data = {stars_data}\n")
 
-    badges_text = "\n".join(
+    badges_text = "".join(
         f"[![AoC {year}]("
         f"https://img.shields.io/badge/{year}-⭐%20{stars}-gray?logo=adventofcode&labelColor=8a2be2"
-        f")](https://adventofcode.com/{year}){'  ' if i % 5 == 0 else ''}"
+        f")](https://adventofcode.com/{year}){'  ' if i % 5 == 0 else ''}\n"
         for i, (year, stars) in enumerate(stars_data, start=1)
     )
     print(f"Badges:\n{badges_text}\n")
 
-    table_text = "| Year | Stars | Advent of Code Link |\n| :--: | :---: | :--: |\n" + "\n".join(
-        f"| [{year}]({YEAR_DIR}/{year}) | ⭐️{stars}  | https://adventofcode.com/{year} |"
+    table_text = "| Year | Stars | Advent of Code Link |\n| :--: | :---: | :--: |\n" + "".join(
+        f"| [{year}]({YEAR_DIR}/{year}) | ⭐️{stars}  | https://adventofcode.com/{year} |\n"
         for year, stars in stars_data
     )
     print(f"Table:\n{table_text}\n")
@@ -86,8 +86,20 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]):
         readme_text = f.read()
 
     print(f"Replacing `{path}` file with the badges and the table...")
-    readme_text = readme_text.replace(r"{{ badges_of_stars }}", badges_text)
-    readme_text = readme_text.replace(r"{{ table_summary_of_years }}", table_text)
+
+    # Place badges
+    BADGES_BEGIN_MARK = r"<!-- Badges of stars: begin -->"
+    BADGES_END_MARK = r"<!-- Badges of stars: end -->"
+    badges_begin_pos = readme_text.index(BADGES_BEGIN_MARK) + len(BADGES_BEGIN_MARK) + 1
+    badges_end_pos = readme_text.index(BADGES_END_MARK)
+    readme_text = readme_text[:badges_begin_pos] + badges_text + readme_text[badges_end_pos:]
+
+    # Place table
+    TABLE_BEGIN_MARK = r"<!-- Table summary of years: begin -->"
+    TABLE_END_MARK = r"<!-- Table summary of years: end -->"
+    table_begin_pos = readme_text.index(TABLE_BEGIN_MARK) + len(TABLE_BEGIN_MARK) + 1
+    table_end_pos = readme_text.index(TABLE_END_MARK)
+    readme_text = readme_text[:table_begin_pos] + table_text + readme_text[table_end_pos:]
 
     print(f"Saving `{path}` file...")
     with open(path, "w", encoding="utf-8") as f:
