@@ -2,6 +2,11 @@
 name: Update the readme.md file with the number of stars in AoC challenges
 on:
   push:
+    paths:
+      - ".github/workflows/update_readme_stars.yaml"
+      - "vscode_tasks/update_readme_stars.py"
+      - "year/**.py"
+      - "readme.md"
 jobs:
   update-readme-stars:
     runs-on: ubuntu-latest
