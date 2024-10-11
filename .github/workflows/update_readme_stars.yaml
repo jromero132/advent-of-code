@@ -2,8 +2,6 @@
 name: Update the readme.md file with the number of stars in AoC challenges
 on:
   push:
-    branches:
-      - feature-auto-stars-count
 jobs:
   update-readme-stars:
     runs-on: ubuntu-latest
