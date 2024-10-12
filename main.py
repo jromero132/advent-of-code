@@ -1,8 +1,8 @@
 """Main module for the Advent of Code project.
 
 This module provides a command-line interface for managing and testing solutions to Advent of Code
-challenges. It includes functionality for creating tasks, running tests, and parsing command-line
-arguments to facilitate user interaction with the project.
+challenges. It includes functionality for creating tasks, running tests, submit answers and parsing
+command-line arguments to facilitate user interaction with the project.
 
 The module defines various subcommands, each associated with specific actions, and utilizes argument
 parsing to handle user inputs effectively.
@@ -123,7 +123,7 @@ def get_url(year: int, day: int) -> str:
     return f"https://adventofcode.com/{year}/day/{day}"
 
 
-def get_response(url: str) -> requests.Response:
+def get_response(url: str, data: dict = {}) -> requests.Response:
     """Fetches the HTTP response from the specified URL.
 
     This function sends a GET request to the provided URL using a session cookie for authentication.
@@ -132,6 +132,8 @@ def get_response(url: str) -> requests.Response:
 
     Args:
         url (str): The URL to send the GET request to.
+        data (dict, optional): The data to send with the POST request. Defaults to an empty
+            dictionary.
 
     Returns:
         requests.Response: The HTTP response object from the request.
@@ -139,7 +141,12 @@ def get_response(url: str) -> requests.Response:
     Raises:
         ValueError: If the response status code is not 200 OK.
     """
-    response = requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")})
+    # response = requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")}, data=data)
+    response = (
+        requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")})
+        if data
+        else requests.post(url, cookies={"session": os.getenv("AOC_COOKIE", "")}, data=data)
+    )
 
     if response.status_code != HTTPStatus.OK:
         raise ValueError(
@@ -182,6 +189,27 @@ def get_input(year: int, day: int) -> str:
         str: The input data for the specified challenge.
     """
     return get_response(f"{get_url(year, day)}/input").text
+
+
+def submit_answer(year: int, day: int, task: int, answer: str) -> bool:
+    """Submit an answer for a specific task of a given day in a specified year.
+
+    This function sends the provided answer to the Advent of Code server for the specified  year,
+    day, and task level, and checks if the response indicates that the answer is correct.
+
+    Args:
+        year (int): The year of the Advent of Code event.
+        day (int): The day of the challenge within the specified year.
+        task (int): The task level for which the answer is being submitted.
+        answer (str): The answer to be submitted.
+
+    Returns:
+        bool: True if the answer is correct, False otherwise.
+    """
+    return (
+        "That's the right answer!"
+        in get_response(f"{get_url(year, day)}/answer", data={"level": task, "answer": answer}).text
+    )
 
 
 # Simplification of https://github.com/dlon/html2markdown/blob/master/html2markdown.py
@@ -475,7 +503,7 @@ def test(args: argparse.Namespace):
 
     This function executes a series of input tests against a solution file, comparing the actual
     output to the expected output. It reports the results of each test, indicating whether they
-    passed or failed, and can optionally solve the task if all tests pass.
+    passed or failed, and can optionally solve the task and submit the answer if all tests pass.
 
     Args:
         args (argparse.Namespace): The command-line arguments containing the year, day, task, and
@@ -533,7 +561,7 @@ def test(args: argparse.Namespace):
 
     if failed_testcases == 0:
         print(font_color_green("All tests passed!"))
-        if args.solve:
+        if args.answer or args.submit:
             ans_decoded = get_code_output(sol_file, day_dir / "task.in").decode("utf-8")
             with open(day_dir / f"task{args.task}.out", "w", encoding="utf-8") as f:
                 f.write(ans_decoded)
@@ -541,6 +569,13 @@ def test(args: argparse.Namespace):
 
             print(f"Answer={font_color_blue(ans_decoded)}")
             pyperclip.copy(ans_decoded)
+
+            if args.submit:
+                if submit_answer(args.year, args.day, args.task, ans_decoded):
+                    print(font_color_green("Task solved!"))
+
+                else:
+                    print(font_color_red("Wrong answer!"))
 
     else:
         print(
@@ -592,10 +627,17 @@ def test_cli(subparsers: argparse._SubParsersAction):
         help="Continue running tests even if some fail.",
     )
     parser.add_argument(
-        "-s",
-        "--solve",
+        "-a",
+        "--answer",
         action="store_true",
-        help="Solve the task after running tests, in case all tests passed.",
+        help="Solve the task after running the tests, in case all tests passed.",
+    )
+    parser.add_argument(
+        "-s",
+        "--submit",
+        action="store_true",
+        help="Submit the answer of the task after running the tests, in case all tests passed. "
+        "Note that this option implies the --answer option.",
     )
 
 

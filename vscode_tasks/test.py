@@ -26,13 +26,16 @@ def main():
     day = int(aoc_py_file_parts[-3][3:])
     year = int(aoc_py_file_parts[-4])
 
-    TestConfig = namedtuple("TestConfig", ("year", "day", "task", "continue_on_failure", "solve"))
+    TestConfig = namedtuple(
+        "TestConfig", ("year", "day", "task", "continue_on_failure", "answer", "submit")
+    )
     test_config = TestConfig(
         year=year,
         day=day,
         task=task,
         continue_on_failure=False,
-        solve=True,
+        answer=True,
+        submit=True,
     )
 
     test(test_config)

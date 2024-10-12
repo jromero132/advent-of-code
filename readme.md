@@ -17,12 +17,13 @@
 [![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 <!-- Badges of stars: end -->
 ---
-This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
+This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.  
+***Note that this project can automatically download tasks, inputs and submit your solutions to the Advent of Code server. _Please use it moderately._***
 
 A brief introduction taken from the website:
 > Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
 
-In addition, this project contains a command-line application for managing, testing, and solving
+In addition, this project contains a command-line application for managing, testing, solving and submitting
 Advent of Code challenges. This tool allows users to create challenge setups, run tests, generate
 test files, and provides solutions for various tasks.
 
@@ -63,10 +64,13 @@ For every year, the Advent of Code calendar has `25` challenges with `2` tasks p
 
 - **Solutions**: Includes implementations for solving Advent of Code challenges.
 - **Create Challenges**: Set up new Advent of Code challenges for a specified year and day.
+- **Generate Test Files**: Create multiple test files for a given task.
 - **Run Tests**: Execute tests for specific tasks with options to continue on failure and solve the
 task in case all tests passed. Take into account that if the puzzle is solved, then the output will
 be copied to the clipboard 😄
-- **Generate Test Files**: Create multiple test files for a given task.
+- **Submit Answer**: Allows you to automatically submit your answer for a specific task in the
+Advent of Code challenges. This feature is essential if you who want to validate your solutions
+against the official Advent of Code server without having to do it manually.
 
 The `vscode_tasks` directory along with the `.vscode` directory enhances the development experience
 for Advent of Code solutions by providing utility scripts and configurations specifically designed
