@@ -14,7 +14,7 @@
 [![AoC 2020](https://img.shields.io/badge/2020-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
 [![AoC 2021](https://img.shields.io/badge/2021-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
 [![AoC 2022](https://img.shields.io/badge/2022-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
-[![AoC 2023](https://img.shields.io/badge/2023-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
+[![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 <!-- Badges of stars: end -->
 ---
 This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
@@ -56,7 +56,7 @@ For every year, the Advent of Code calendar has `25` challenges with `2` tasks p
 | [2020](year/2020) | ⭐️10  | https://adventofcode.com/2020 |
 | [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
 | [2022](year/2022) | ⭐️10  | https://adventofcode.com/2022 |
-| [2023](year/2023) | ⭐️8  | https://adventofcode.com/2023 |
+| [2023](year/2023) | ⭐️10  | https://adventofcode.com/2023 |
 <!-- Table summary of years: end -->
 
 ## Features
