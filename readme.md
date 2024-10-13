@@ -88,7 +88,11 @@ have `Python >= 3.10` installed. Clone the repository and install the required d
 git clone https://github.com/jromero132/advent-of-code
 cd advent-of-code
 pip install -r requirements.txt
+echo "AOC_COOKIE=<your-aoc-session-cookie>" > .env
 ```
+
+Note that `AOC_COOKIE` is your Advent of Code session cookie. You can search for it pressing `F12`
+and going into the `Network` tab in your browser.
 
 ## Usage
 
