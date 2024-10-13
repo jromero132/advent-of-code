@@ -17,8 +17,10 @@
 [![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 <!-- Badges of stars: end -->
 ---
-This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.  
-***Note that this project can automatically download tasks, inputs and submit your solutions to the Advent of Code server. _Please use it moderately._***
+This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
+
+> [!WARNING]
+> Note that ***this project can automatically download tasks and inputs and submit your solutions*** to the Advent of Code server. Please use it moderately.
 
 A brief introduction taken from the website:
 > Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
@@ -27,8 +29,13 @@ In addition, this project contains a command-line application for managing, test
 Advent of Code challenges. This tool allows users to create challenge setups, run tests, generate
 test files, and provides solutions for various tasks.
 
-**Note:** Take into account that if all tests passed and the puzzle is solved, then the output will
-be copied to the clipboard, so it can be easily pasted in the Advent of Code website 😄
+> [!IMPORTANT]
+> Take into account that if all tests passed and you select the option `-a` or `--answer` then
+> the puzzle will be solved, and the output will be copied to the clipboard, so it can be
+> easily pasted in the Advent of Code website. Also note that if you select the option
+> `-s` or `--submit` then this answer will be automatically submitted to the Advent of Code
+> server and you will get a console message to let you know whether you answered the task
+> correctly or not 😄
 
 ## Table of Contents
 
@@ -91,7 +98,8 @@ pip install -r requirements.txt
 echo "AOC_COOKIE=<your-aoc-session-cookie>" > .env
 ```
 
-Note that `AOC_COOKIE` is your Advent of Code session cookie. You can search for it pressing `F12`
+> [!NOTE]
+> The `AOC_COOKIE` is your Advent of Code session cookie. You can search for it pressing `F12`
 and going into the `Network` tab in your browser.
 
 ## Usage
