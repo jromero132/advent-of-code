@@ -191,7 +191,7 @@ def get_input(year: int, day: int) -> str:
     return get_response(f"{get_url(year, day)}/input").text
 
 
-def submit_answer(year: int, day: int, task: int, answer: str) -> bool:
+def submit_answer(year: int, day: int, task: int, answer: str) -> int:
     """Submit an answer for a specific task of a given day in a specified year.
 
     This function sends the provided answer to the Advent of Code server for the specified  year,
@@ -204,11 +204,23 @@ def submit_answer(year: int, day: int, task: int, answer: str) -> bool:
         answer (str): The answer to be submitted.
 
     Returns:
-        bool: True if the answer is correct, False otherwise.
+        int: 0 if the answer is wrong, 1 if the answer if correct and -1 if the problem was already
+            solved.
     """
+    response = get_response(
+        f"{get_url(year, day)}/answer", data={"level": task, "answer": answer}
+    ).text
+
+    with open("a.txt", "w", encoding="utf-8") as f:
+        f.write(response)
+
     return (
-        "That's the right answer!"
-        in get_response(f"{get_url(year, day)}/answer", data={"level": task, "answer": answer}).text
+        1
+        if "That's the right answer!" in response
+        else -1
+        if "Both parts of this puzzle are complete!" in response
+        or ("The first half of this puzzle is complete!" in response and task == 1)
+        else 0
     )
 
 
@@ -571,11 +583,15 @@ def test(args: argparse.Namespace):
             pyperclip.copy(ans_decoded)
 
             if args.submit:
-                if submit_answer(args.year, args.day, args.task, ans_decoded):
-                    print(font_color_green("Task solved!"))
+                match submit_answer(args.year, args.day, args.task, ans_decoded):
+                    case 1:
+                        print(font_color_green("Task solved!"))
 
-                else:
-                    print(font_color_red("Wrong answer!"))
+                    case 0:
+                        print(font_color_red("Wrong answer!"))
+
+                    case -1:
+                        print(font_color_orange("This task was already solved!"))
 
     else:
         print(
