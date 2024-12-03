@@ -4,7 +4,7 @@ Puzzle: Advent of Code (year=2016 ; day=1 ; task=1)
 """
 
 
-def main():
+def main() -> None:
     line = input()
     x, y = 0, 0
     dx, dy = 0, 1

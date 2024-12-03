@@ -7,7 +7,7 @@ import sys
 from math import sqrt
 
 
-def main():
+def main() -> None:
     pos = int(sys.stdin.readline())
     if pos == 1:
         print(0)

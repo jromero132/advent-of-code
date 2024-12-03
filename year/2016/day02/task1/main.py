@@ -6,12 +6,12 @@ Puzzle: Advent of Code (year=2016 ; day=2 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     code = ""
     r, c = 1, 1
     for line in sys.stdin:
-        for l in line:
-            match l:
+        for i in line:
+            match i:
                 case "U":
                     r = max(0, r - 1)
 

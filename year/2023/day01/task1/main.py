@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2023 ; day=1 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     ans = 0
     for line in sys.stdin:
         first, last = None, None

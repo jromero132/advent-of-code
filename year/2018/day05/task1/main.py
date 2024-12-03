@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2018 ; day=5 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     line = sys.stdin.readline().strip()
     stack, idx = [], 0
     while idx < len(line):

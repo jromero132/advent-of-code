@@ -3,7 +3,7 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.rulers": [
-        119
+        120
     ],
     // Files settings
     "files.associations": {
@@ -13,7 +13,28 @@
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     // Code Spell settings
-    "cSpell.words": [],
+    "cSpell.ignoreWords": [
+        "aeiou",
+        "beautifulsoup4",
+        "isort",
+        "jromero132",
+        "maketests",
+        "mypy",
+        "northpole",
+        "ownerproof",
+        "popleft",
+        "pycache",
+        "pydocstyle",
+        "pyupgrade",
+        "pyyaml",
+        "texter",
+        "venv"
+    ],
+    "cSpell.words": [
+        "fenwick",
+        "intcode",
+        "neighbour"
+    ],
     // Indent Rainbow settings
     "indentRainbow.colors": [
         "rgba(200, 32, 200, 0.35)",
@@ -56,8 +77,16 @@
     "ruff.lineLength": 120,
     "ruff.lint.ignore": [
         // "D100",
-        // "D103",
-        // "T201"
+        "D103",
+        "D205",
+        "D212",
+        "D400",
+        "D415",
+        "INP001",
+        "PLR2004",
+        "S101",
+        "S324",
+        "T201"
     ],
     "ruff.lint.select": [
         "F", // Pyflakes,

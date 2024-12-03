@@ -31,7 +31,7 @@ def get_coords(pos: int) -> tuple[int, int]:
             return pos_in_side - r + 1, -r
 
 
-def main():
+def main() -> None:
     target = int(sys.stdin.readline())
     grid = {(0, 0): 1}
     last, pos = 1, 1

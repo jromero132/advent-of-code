@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2021 ; day=2 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     horizontal, depth, aim = 0, 0, 0
     for line in sys.stdin:
         move, steps = line.split()

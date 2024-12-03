@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2022 ; day=2 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     ans = 0
     for line in sys.stdin:
         p1 = ord(line[0]) - ord("A")  # 0=rock ; 1=paper ; 2=scissors

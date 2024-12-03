@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2019 ; day=2 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     memory = [int(n) for n in sys.stdin.readline().split(",")]
     if len(memory) > 12:  # In order to run the actual puzzle input
         memory[1], memory[2] = 12, 2

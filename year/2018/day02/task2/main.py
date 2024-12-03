@@ -7,7 +7,8 @@ import sys
 
 
 def get_solution(line1: str, line2: str) -> str:
-    """Find a common substring by removing one differing character.
+    """
+    Find a common substring by removing one differing character.
 
     This function compares two strings and returns a new string formed by removing one character
     from the first string if the two strings differ by exactly one character. If the strings are of
@@ -20,6 +21,7 @@ def get_solution(line1: str, line2: str) -> str:
 
     Returns:
         str: A new string with one character removed if the conditions are met, or None if not.
+
     """
     if len(line1) < len(line2):
         line1, line2 = line2, line1
@@ -39,7 +41,7 @@ def get_solution(line1: str, line2: str) -> str:
     return line1[:p] + line1[p + 1 :]
 
 
-def main():
+def main() -> None:
     prev_lines = []
     for line in sys.stdin:
         for prev_line in prev_lines:

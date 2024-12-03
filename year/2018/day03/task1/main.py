@@ -7,7 +7,7 @@ import itertools
 import sys
 
 
-def main():
+def main() -> None:
     max_x, max_y = 0, 0
     rectangles = []
     for line in sys.stdin:

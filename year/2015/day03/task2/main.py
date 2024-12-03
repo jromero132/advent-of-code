@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2015 ; day=3 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     idx, santa = 0, [[0, 0], [0, 0]]
     visited = {tuple(santa[idx])}
     for c in sys.stdin.readline():

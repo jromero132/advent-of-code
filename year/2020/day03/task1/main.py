@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2020 ; day=3 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     grid = [line.strip() for line in sys.stdin]
     slope = (1, 3)
     ans, i, j = 0, 0, 0

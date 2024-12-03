@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2018 ; day=1 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     print(sum(int(line.strip()) for line in sys.stdin))
 
 

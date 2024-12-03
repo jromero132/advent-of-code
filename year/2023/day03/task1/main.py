@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2023 ; day=3 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     grid = [line.strip() for line in sys.stdin]
     ans = 0
     for i in range(len(grid)):

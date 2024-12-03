@@ -4,10 +4,9 @@ Puzzle: Advent of Code (year=2016 ; day=4 ; task=2)
 """
 
 import sys
-from collections import defaultdict
 
 
-def main():
+def main() -> None:
     for line in sys.stdin:
         parts = line.split("-")
         p1 = 1

@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2015 ; day=3 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     santa_x, santa_y = 0, 0
     visited = {(santa_x, santa_y)}
     for c in sys.stdin.readline():

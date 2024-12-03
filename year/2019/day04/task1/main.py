@@ -7,13 +7,14 @@ import sys
 
 
 def is_valid_password(password: str) -> bool:
-    """Check if a password is valid based on specific criteria.
+    """
+    Check if a password is valid based on specific criteria.
 
     This function determines the validity of a password by ensuring it is non-decreasing and
     contains at least one pair of adjacent matching digits. It returns a boolean indicating whether
     the password meets these requirements.
 
-    Note that the other criterias (6-digit number and within the range given in input) are ensured
+    Note that the other criteria (6-digit number and within the range given in input) are ensured
     before calling this method.
 
     Args:
@@ -21,6 +22,7 @@ def is_valid_password(password: str) -> bool:
 
     Returns:
         bool: True if the password is valid, False otherwise.
+
     """
     two_equals = False
     for i in range(1, len(password)):
@@ -32,13 +34,13 @@ def is_valid_password(password: str) -> bool:
     return two_equals
 
 
-def main():
+def main() -> None:
     lower_bound, upper_bound = (int(n) for n in sys.stdin.readline().split("-"))
     print(
         sum(
             is_valid_password(str(n))
             for n in range(max(10**5, lower_bound), min(upper_bound + 1, 10**6))  # 6-digit number
-        )
+        ),
     )
 
 

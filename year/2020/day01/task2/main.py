@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2020 ; day=1 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     checked = set()
     for n in (int(line) for line in sys.stdin):
         checked.add(n)

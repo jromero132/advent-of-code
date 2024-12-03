@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=`year` ; day=`day` ; task=`task`)
 import sys
 
 
-def main():
+def main() -> None:
     for line in sys.stdin:
         pass
 

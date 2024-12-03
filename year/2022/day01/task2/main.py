@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2022 ; day=1 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     data = [0]
     for line in sys.stdin:
         if line == "\n":

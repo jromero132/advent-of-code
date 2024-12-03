@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2022 ; day=4 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     ans = 0
     for s1, s2 in (line.split(",") for line in sys.stdin):
         r1 = [int(x) for x in s1.split("-")]

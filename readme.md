@@ -1,30 +1,48 @@
 # Advent of Code Solutions and CLI
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jromero132 "Buy Me a Coffee - jromero132")
-[![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](https://adventofcode.com/ "Advent of Code homepage")
-[![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](https://python.org "Go to Python homepage")
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](\
+<https://buymeacoffee.com/jromero132> "Buy Me a Coffee - jromero132")
+[![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](\
+<https://adventofcode.com/> "Advent of Code homepage")
+[![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](\
+<https://python.org> "Go to Python homepage")
 ![Last commit](https://img.shields.io/github/last-commit/jromero132/advent-of-code "Last commit")
+
 ---
+
 <!-- Badges of stars: begin -->
-[![AoC 2015](https://img.shields.io/badge/2015-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2015)
-[![AoC 2016](https://img.shields.io/badge/2016-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2016)
-[![AoC 2017](https://img.shields.io/badge/2017-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2017)
-[![AoC 2018](https://img.shields.io/badge/2018-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
-[![AoC 2019](https://img.shields.io/badge/2019-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2019)  
-[![AoC 2020](https://img.shields.io/badge/2020-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
-[![AoC 2021](https://img.shields.io/badge/2021-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
-[![AoC 2022](https://img.shields.io/badge/2022-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
-[![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
-[![AoC 2024](https://img.shields.io/badge/2024-⭐%202-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2024)  
+[![AoC 2015](https://img.shields.io/badge/2015-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2015>)
+[![AoC 2016](https://img.shields.io/badge/2016-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2016>)
+[![AoC 2017](https://img.shields.io/badge/2017-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2017>)
+[![AoC 2018](https://img.shields.io/badge/2018-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2018>)
+[![AoC 2019](https://img.shields.io/badge/2019-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2019>)  
+[![AoC 2020](https://img.shields.io/badge/2020-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2020>)
+[![AoC 2021](https://img.shields.io/badge/2021-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2021>)
+[![AoC 2022](https://img.shields.io/badge/2022-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2022>)
+[![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2023>)
+[![AoC 2024](https://img.shields.io/badge/2024-⭐%202-gray?logo=adventofcode&labelColor=8a2be2)](\
+<https://adventofcode.com/2024>)  
 <!-- Badges of stars: end -->
 ---
 This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
 
 > [!WARNING]
-> Note that ***this project can automatically download tasks and inputs and submit your solutions*** to the Advent of Code server. Please use it moderately.
+> Note that ***this project can automatically download tasks and inputs and submit your solutions*** to the Advent of
+> Code server. Please use it moderately.
 
 A brief introduction taken from the website:
-> Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. People use them as interview prep, company training, university coursework, practice problems, a speed contest, or to challenge each other.
+> Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that
+> can be solved in any programming language you like. People use them as interview prep, company training, university
+> coursework, practice problems, a speed contest, or to challenge each other.
 
 In addition, this project contains a command-line application for managing, testing, solving and submitting
 Advent of Code challenges. This tool allows users to create challenge setups, run tests, generate
@@ -40,33 +58,37 @@ test files, and provides solutions for various tasks.
 
 ## Table of Contents
 
-- [Stats](#stats)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-    - [Commands](#commands)
-- [Solutions](#solutions)
-    - [Directory Structure](#directory-structure)
-- [Contributing](#contributing)
-- [License](#license)
+- [Advent of Code Solutions and CLI](#advent-of-code-solutions-and-cli)
+    - [Table of Contents](#table-of-contents)
+    - [Stats](#stats)
+    - [Features](#features)
+    - [Installation](#installation)
+    - [Usage](#usage)
+        - [Commands](#commands)
+    - [Solutions](#solutions)
+        - [Directory Structure](#directory-structure)
+    - [Contributing](#contributing)
+    - [License](#license)
+        - [Happy Coding! 🚀](#happy-coding-)
 
 ## Stats
 
-For every year, the Advent of Code calendar has `25` challenges with `2` tasks per challenge. Every task gives you a star ⭐️ so the maximum amount of stars for a year is `50`.
+For every year, the Advent of Code calendar has `25` challenges with `2` tasks per challenge. Every task gives you a
+star ⭐️ so the maximum amount of stars for a year is `50`.
 
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️12  | https://adventofcode.com/2015 |
-| [2016](year/2016) | ⭐️10  | https://adventofcode.com/2016 |
-| [2017](year/2017) | ⭐️10  | https://adventofcode.com/2017 |
-| [2018](year/2018) | ⭐️10  | https://adventofcode.com/2018 |
-| [2019](year/2019) | ⭐️10  | https://adventofcode.com/2019 |
-| [2020](year/2020) | ⭐️10  | https://adventofcode.com/2020 |
-| [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
-| [2022](year/2022) | ⭐️10  | https://adventofcode.com/2022 |
-| [2023](year/2023) | ⭐️10  | https://adventofcode.com/2023 |
-| [2024](year/2024) | ⭐️2  | https://adventofcode.com/2024 |
+| [2015](year/2015) | ⭐️12  | <https://adventofcode.com/2015> |
+| [2016](year/2016) | ⭐️10  | <https://adventofcode.com/2016> |
+| [2017](year/2017) | ⭐️10  | <https://adventofcode.com/2017> |
+| [2018](year/2018) | ⭐️10  | <https://adventofcode.com/2018> |
+| [2019](year/2019) | ⭐️10  | <https://adventofcode.com/2019> |
+| [2020](year/2020) | ⭐️10  | <https://adventofcode.com/2020> |
+| [2021](year/2021) | ⭐️10  | <https://adventofcode.com/2021> |
+| [2022](year/2022) | ⭐️10  | <https://adventofcode.com/2022> |
+| [2023](year/2023) | ⭐️10  | <https://adventofcode.com/2023> |
+| [2024](year/2024) | ⭐️2  | <https://adventofcode.com/2024> |
 <!-- Table summary of years: end -->
 
 ## Features

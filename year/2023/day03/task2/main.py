@@ -7,19 +7,23 @@ import sys
 from collections import defaultdict
 
 
-def main():
+def extract_number(row: str, start: int) -> tuple[int, int]:
+    """Extract a number from the row starting at the given index."""
+    end = start + 1
+    while end < len(row) and row[end].isdigit():
+        end += 1
+    return int(row[start:end]), end
+
+
+def main() -> None:
     grid = [line.strip() for line in sys.stdin]
     gear = defaultdict(list)
     for i in range(len(grid)):
         j = 0
         while j < len(grid[i]):
             if grid[i][j].isdigit():
-                p = j + 1
-                while p < len(grid[i]) and grid[i][p].isdigit():
-                    p += 1
-
-                num = int(grid[i][j:p])
-                for dj in range(j - 1, p + 1):
+                num, end = extract_number(grid[i], j)
+                for dj in range(j - 1, end + 1):
                     if i > 0 and 0 <= dj < len(grid[i]) and grid[i - 1][dj] == "*":
                         gear[(i - 1, dj)].append(num)
 
@@ -29,20 +33,15 @@ def main():
                 if j > 0 and grid[i][j - 1] == "*":
                     gear[(i, j - 1)].append(num)
 
-                if p < len(grid[i]) and grid[i][p] == "*":
-                    gear[(i, p)].append(num)
+                if end < len(grid[i]) and grid[i][end] == "*":
+                    gear[(i, end)].append(num)
 
-                j = p
+                j = end
 
             else:
                 j += 1
 
-    ans = 0
-    for values in gear.values():
-        if len(values) == 2:
-            ans += values[0] * values[1]
-
-    print(ans)
+    print(sum(values[0] * values[1] for values in gear.values() if len(values) == 2))
 
 
 if __name__ == "__main__":

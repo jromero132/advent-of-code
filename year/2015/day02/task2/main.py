@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2015 ; day=2 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     ans = 0
     for line in sys.stdin:
         dims = [int(n) for n in line.split("x")]

@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2023 ; day=5 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     input_parts = sys.stdin.read().strip().split("\n\n")
     seeds = [int(n) for n in input_parts[0].split()[1:]]
     maps = [

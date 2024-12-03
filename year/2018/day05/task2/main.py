@@ -7,7 +7,8 @@ import sys
 
 
 def get_measure_of_reaction(polymer: str) -> int:
-    """Calculate the measure of a polymer reaction by removing the reactive units.
+    """
+    Calculate the measure of a polymer reaction by removing the reactive units.
 
     This function processes the polymer string and returns the length of the remaining units after
     all possible reactions.
@@ -17,6 +18,7 @@ def get_measure_of_reaction(polymer: str) -> int:
 
     Returns:
         int: The length of the polymer after all reactions have been completed.
+
     """
     stack, idx = [], 0
     while idx < len(polymer):
@@ -34,7 +36,7 @@ def get_measure_of_reaction(polymer: str) -> int:
     return len(stack)
 
 
-def main():
+def main() -> None:
     line = sys.stdin.readline().strip()
     checked = [False] * len(line)
     ans = len(line)

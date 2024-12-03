@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2019 ; day=3 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     dirs = {
         "R": (1, 0),
         "D": (0, -1),

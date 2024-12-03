@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2018 ; day=2 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     two_letters, three_letters = 0, 0
     for line in sys.stdin:
         cnt = {}

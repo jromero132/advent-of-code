@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2023 ; day=1 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     str_to_digit = {
         "one": "1",
         "two": "2",
@@ -22,13 +22,14 @@ def main():
     for line in sys.stdin:
         first, last = None, None
         for i, c in enumerate(line):
+            cur_char = c
             for k, v in str_to_digit.items():
                 if line[i : i + len(k)] == k:
-                    c = v
+                    cur_char = v
 
-            if c.isdigit():
-                first = c if first is None else first
-                last = c
+            if cur_char.isdigit():
+                first = cur_char if first is None else first
+                last = cur_char
 
         ans += int(first + last)
 

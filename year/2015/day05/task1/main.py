@@ -6,13 +6,14 @@ Puzzle: Advent of Code (year=2015 ; day=5 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
+    min_vowels = 3
     invalid_substr = ["ab", "cd", "pq", "xy"]
     ans = 0
     for line in sys.stdin:
         if (
             all(substr not in line for substr in invalid_substr)
-            and sum(line.count(c) for c in "aeiou") >= 3
+            and sum(line.count(c) for c in "aeiou") >= min_vowels
         ):
             for i in range(1, len(line)):
                 if line[i] == line[i - 1]:

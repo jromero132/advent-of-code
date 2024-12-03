@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2022 ; day=5 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     input_parts = sys.stdin.read().split("\n\n")
     starting_stacks = input_parts[0].split("\n")
     size = len(starting_stacks[-1].split())  # get how many crates are there

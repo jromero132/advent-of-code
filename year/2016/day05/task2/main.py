@@ -7,7 +7,7 @@ import hashlib
 import sys
 
 
-def main():
+def main() -> None:
     door_id = sys.stdin.readline().strip()
     password, password_length, index = [""] * 8, 0, 0
     while len(password) != password_length:

@@ -7,12 +7,12 @@ import hashlib
 import sys
 
 
-def main():
+def main() -> None:
     secret_key = sys.stdin.readline().strip()
-    n, hash = 0, ""
-    while not hash.startswith("00000"):
+    n, hashing = 0, ""
+    while not hashing.startswith("00000"):
         n += 1
-        hash = hashlib.md5(f"{secret_key}{n}".encode()).hexdigest()
+        hashing = hashlib.md5(f"{secret_key}{n}".encode()).hexdigest()
 
     print(n)
 

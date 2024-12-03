@@ -4,7 +4,7 @@ Puzzle: Advent of Code (year=2017 ; day=1 ; task=2)
 """
 
 
-def main():
+def main() -> None:
     line = input()
     step = len(line) // 2
     print(sum(int(line[i]) for i in range(len(line)) if line[i] == line[(i + step) % len(line)]))

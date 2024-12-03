@@ -7,7 +7,7 @@ import sys
 from collections import deque
 
 
-def main():
+def main() -> None:
     ans, accumulate = 0, deque([1])
     for line in sorted(sys.stdin):
         _, card = line.split(":")

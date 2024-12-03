@@ -7,7 +7,8 @@ import sys
 
 
 def get_interception(seg1: list[int], seg2: list[int]) -> list[list[int]]:
-    """Calculate the interception segments between two integer segments.
+    """
+    Calculate the interception segments between two integer segments.
 
     This function determines the overlapping segments between two given segments based on their
     start and length values. It returns a list of segments that represent the areas of intersection.
@@ -29,23 +30,24 @@ def get_interception(seg1: list[int], seg2: list[int]) -> list[list[int]]:
     Returns:
         list[list[int]]: A list of segments that represent the intersections between the two
             segments and the remaining parts of the first segment, if any of those exists.
+
     """
     if seg2[1] <= seg1[0] and seg1[0] + seg1[1] <= seg2[1] + seg2[2]:
         return [[seg2[0] + seg1[0] - seg2[1], seg1[1]]]
 
-    elif seg2[1] <= seg1[0] < seg2[1] + seg2[2]:
+    if seg2[1] <= seg1[0] < seg2[1] + seg2[2]:
         return [
             [seg2[0] + seg1[0] - seg2[1], seg2[1] + seg2[2] - seg1[0]],
             [seg2[1] + seg2[2], seg1[0] + seg1[1] - seg2[1] - seg2[2]],
         ]
 
-    elif seg2[1] < seg1[0] + seg1[1] <= seg2[1] + seg2[2]:
+    if seg2[1] < seg1[0] + seg1[1] <= seg2[1] + seg2[2]:
         return [
             [seg2[0], seg1[0] + seg1[1] - seg2[1]],
             [seg1[0], seg2[1] - seg1[0]],
         ]
 
-    elif seg1[0] <= seg2[1] and seg2[1] + seg2[2] <= seg1[0] + seg1[1]:
+    if seg1[0] <= seg2[1] and seg2[1] + seg2[2] <= seg1[0] + seg1[1]:
         return [
             [seg2[0], seg2[2]],
             [seg1[0], seg2[1] - seg1[0]],
@@ -55,7 +57,7 @@ def get_interception(seg1: list[int], seg2: list[int]) -> list[list[int]]:
     return []
 
 
-def main():
+def main() -> None:
     assert get_interception([10, 15], [100, 5, 5]) == []
     assert get_interception([10, 15], [100, 25, 5]) == []
     assert get_interception([10, 15], [100, 9, 20]) == [[101, 15]]

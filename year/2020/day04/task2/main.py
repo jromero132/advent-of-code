@@ -7,7 +7,7 @@ import re
 import sys
 
 
-def main():
+def main() -> None:
     required_keys = {  # required keys and validations
         "byr": lambda s: "1920" <= s <= "2002",
         "iyr": lambda s: "2010" <= s <= "2020",
@@ -20,25 +20,25 @@ def main():
         "ecl": lambda s: s in ("amb", "blu", "brn", "gry", "grn", "hzl", "oth"),
         "pid": lambda s: len(s) == 9 and s.isdigit(),
     }
-    valids = 0
+    valid = 0
     keys = set()
     for line in sys.stdin:
-        line = line.strip()
+        line_parts = line.strip()
 
-        if line == "":
-            valids += len(keys) == len(required_keys)
+        if line_parts == "":
+            valid += len(keys) == len(required_keys)
             keys = set()
 
         else:
-            for entry in line.split(" "):
+            for entry in line_parts.split(" "):
                 key, value = entry.split(":")
                 if key in required_keys and required_keys[key](value):  # check if it's a valid key
                     keys.add(key)
 
     if len(keys) > 0:  # Special case when there is not final blank line
-        valids += len(keys) == len(required_keys)
+        valid += len(keys) == len(required_keys)
 
-    print(valids)
+    print(valid)
 
 
 if __name__ == "__main__":

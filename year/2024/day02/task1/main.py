@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2024 ; day=2 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     ans = 0
     for line in sys.stdin:
         nums = [int(x) for x in line.split()]

@@ -8,7 +8,8 @@ from collections.abc import Generator
 
 
 def translate(lines: list[list[list[int]]]) -> tuple[int, int]:
-    """Translate a list of vent lines into a list of dimensions by normalizing their coordinates.
+    """
+    Translate a list of vent lines into a list of dimensions by normalizing their coordinates.
 
     This function takes a list of vent lines coordinates, calculates the minimum and maximum values
     for each dimension, and adjusts the coordinates to start from zero. It returns a list which is
@@ -22,6 +23,7 @@ def translate(lines: list[list[list[int]]]) -> tuple[int, int]:
     Returns:
         tuple[int, int]: A tuple of integers representing the maximum X and Y values of the box, so
             now all the segments of the vents are in the box (0, 0) x (X, Y).
+
     """
     min_vals = list(lines[0][0])
     max_vals = list(lines[0][0])
@@ -43,7 +45,8 @@ def translate(lines: list[list[list[int]]]) -> tuple[int, int]:
 
 
 def generate(v1: list[int], v2: list[int]) -> Generator[int, None, None]:
-    """Generate a sequence of points between two given vent coordinates.
+    """
+    Generate a sequence of points between two given vent coordinates.
 
     This function yields points starting from the first coordinate and incrementally moves towards
     the second coordinate. It continues to yield points until the two coordinates are equal,
@@ -55,6 +58,7 @@ def generate(v1: list[int], v2: list[int]) -> Generator[int, None, None]:
 
     Yields:
         list[int]: The next point in the sequence of coordinates between v1 and v2.
+
     """
     sign = [1 if v1[i] <= v2[i] else -1 for i in range(len(v1))]
     yield v1
@@ -65,7 +69,7 @@ def generate(v1: list[int], v2: list[int]) -> Generator[int, None, None]:
         yield v1
 
 
-def main():
+def main() -> None:
     lines = [
         [[int(n) for n in point.split(",")] for point in line.split(" -> ")] for line in sys.stdin
     ]

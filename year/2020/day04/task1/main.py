@@ -6,27 +6,27 @@ Puzzle: Advent of Code (year=2020 ; day=4 ; task=1)
 import sys
 
 
-def main():
+def main() -> None:
     required_keys = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
-    valids = 0
+    valid = 0
     keys = set()
     for line in sys.stdin:
-        line = line.strip()
+        line_parts = line.strip()
 
-        if line == "":
-            valids += len(keys) == len(required_keys)
+        if line_parts == "":
+            valid += len(keys) == len(required_keys)
             keys = set()
 
         else:
-            for entry in line.split(" "):
+            for entry in line_parts.split(" "):
                 key = entry.split(":")[0]
                 if key in required_keys:  # check if this is a valid key
                     keys.add(key)
 
     if len(keys) > 0:  # Special case when there is not final blank line
-        valids += len(keys) == len(required_keys)
+        valid += len(keys) == len(required_keys)
 
-    print(valids)
+    print(valid)
 
 
 if __name__ == "__main__":

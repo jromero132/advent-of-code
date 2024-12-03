@@ -7,7 +7,7 @@ import sys
 from collections import defaultdict
 
 
-def main():
+def main() -> None:
     ans = 0
     for line in sys.stdin:
         parts = line.split("-")

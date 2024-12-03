@@ -7,8 +7,11 @@ import itertools
 import sys
 
 
-def no_overlaps(grid: list[list[int]], rectangle: tuple[tuple[int, int], tuple[int, int], int]):
-    """Check if a rectangle does not overlap with any other rectangle in the grid.
+def no_overlaps(
+    grid: list[list[int]], rectangle: tuple[tuple[int, int], tuple[int, int], int]
+) -> bool:
+    """
+    Check if a rectangle does not overlap with any other rectangle in the grid.
 
     This function determines whether all cells within the specified rectangle in the grid are not
     occupied by any other rectangle (indicated by a value of 1). It returns True if there are no
@@ -21,6 +24,7 @@ def no_overlaps(grid: list[list[int]], rectangle: tuple[tuple[int, int], tuple[i
 
     Returns:
         bool: True if the rectangle does not overlap with any other rectangle in the grid.
+
     """
     return all(
         grid[i][j] == 1
@@ -31,7 +35,7 @@ def no_overlaps(grid: list[list[int]], rectangle: tuple[tuple[int, int], tuple[i
     )
 
 
-def main():
+def main() -> None:
     max_x, max_y = 0, 0
     rectangles = []
     for line in sys.stdin:

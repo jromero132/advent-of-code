@@ -8,7 +8,8 @@ from collections import defaultdict
 
 
 def parse(line: str) -> tuple[tuple[int, int, int, int, int], str]:
-    """Parse a log line into a structured format.
+    """
+    Parse a log line into a structured format.
 
     This function extracts date and time components from a log line and returns them as a tuple,
     along with the remaining text. It is designed to facilitate the processing of log entries by
@@ -21,6 +22,7 @@ def parse(line: str) -> tuple[tuple[int, int, int, int, int], str]:
         tuple[tuple[int, int, int, int, int], str]: A tuple containing a tuple of integers
             representing the year, month, day, hour, and minute, and a string with the remaining
             text from the log line.
+
     """
     return (
         (int(line[1:5]), int(line[6:8]), int(line[9:11]), int(line[12:14]), int(line[15:17])),
@@ -28,7 +30,7 @@ def parse(line: str) -> tuple[tuple[int, int, int, int, int], str]:
     )
 
 
-def main():
+def main() -> None:
     records = sorted((parse(line) for line in sys.stdin), key=lambda v: v[0])
     guard_id, asleep = None, None
     data = defaultdict(lambda: [0] * 61)

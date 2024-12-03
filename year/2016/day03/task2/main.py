@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2016 ; day=3 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     triangles = []
     for i, line in enumerate(sys.stdin):
         if i % 3 == 0:

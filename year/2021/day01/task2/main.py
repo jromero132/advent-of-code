@@ -6,7 +6,7 @@ Puzzle: Advent of Code (year=2021 ; day=1 ; task=2)
 import sys
 
 
-def main():
+def main() -> None:
     ans, prev, cur, window = 0, 0, 0, []
 
     for _ in range(3):
@@ -15,9 +15,9 @@ def main():
 
     for i, cur in enumerate(int(x) for x in sys.stdin):
         window.append(cur)
-        cur += prev - window[i]
-        ans += prev < cur
-        prev = cur
+        tmp = cur + prev - window[i]
+        ans += prev < tmp
+        prev = tmp
 
     print(ans)
 
