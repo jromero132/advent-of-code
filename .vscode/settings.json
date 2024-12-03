@@ -1,12 +1,124 @@
 {
-    "editor.rulers": [100],
-    "ruff.lineLength": 100,
+    // Editor settings
+    "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.rulers": [
+        119
+    ],
+    // Files settings
+    "files.associations": {
+        "*.in": "plaintext",
+        "*.out": "plaintext"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    // Code Spell settings
+    "cSpell.words": [],
+    // Indent Rainbow settings
+    "indentRainbow.colors": [
+        "rgba(200, 32, 200, 0.35)",
+        "rgba(16, 140, 140, 0.35)",
+        "rgba(32, 200, 32, 0.35)",
+        "rgba(200, 200, 16, 0.35)"
+    ],
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.lightIndicatorStyleLineWidth": 2,
+    // Markdown settings & extensions
     "[markdown]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.markdownlint": "explicit"
+        },
+        "editor.tabSize": 4,
         "files.trimTrailingWhitespace": false
     },
-    "[yaml]": {
-        "editor.rulers": [80]
-    }
+    "markdownlint.config": {
+        "MD003": {
+            "style": "atx" // E.g.: # Header
+        },
+        "MD007": {
+            "indent": 4
+        },
+        "MD010": {
+            "spaces_per_tab": 4
+        },
+        "MD013": {
+            "line_length": 120
+        }
+    },
+    // Python settings & extensions
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.unusedImports": "explicit"
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "ruff.lineLength": 120,
+    "ruff.lint.ignore": [
+        // "D100",
+        // "D103",
+        // "T201"
+    ],
+    "ruff.lint.select": [
+        "F", // Pyflakes,
+        "E", // Pycodestyle
+        "W", // Pycodestyle warnings
+        "C90", // McCabe
+        "I", // isort
+        "N", // PEP-8 naming conventions
+        "D", // Pydocstyle
+        "UP", // Pyupgrade
+        "YTT", // flake8-2020
+        "ANN", // flake8-annotations
+        "ASYNC", // flake8-async
+        "S", // flake8-bandit
+        "BLE", // flake8-blind-except
+        "FBT", // flake8-boolean-trap
+        "B", // flake8-bugbear
+        "A", // flake8-builtins
+        "COM", // flake8-commas
+        "CPY", // flake8-copyright
+        "C4", // flake8-comprehensions
+        "DTZ", // flake8-datetimez
+        "T10", // flake8-debugger
+        "DJ", // flake8-django
+        "EM", // flake8-errmsg
+        "EXE", // flake8-executable
+        "FA", // flake8-future-annotations
+        "ISC", // flake8-implicit-str-concat
+        "ICN", // flake8-import-conventions
+        "LOG", // flake8-logging
+        "G", // flake8-logging-format
+        "INP", // flake8-no-pep420
+        "PIE", // flake8-pie
+        "T20", // flake8-print
+        "PYI", // flake8-pyi
+        "PT", // flake8-pytest-style
+        "Q", // flake8-quotes
+        "RSE", // flake8-raise
+        "RET", // flake8-return
+        "SLF", // flake8-self
+        "SLOT", // flake8-slots
+        "SIM", // flake8-simplify
+        "TID", // flake8-tidy-imports
+        "TCH", // flake8-type-checking
+        "INT", // flake8-gettext
+        "ARG", // flake8-unused-arguments
+        "PTH", // flake8-use-pathlib
+        "TD", // flake8-todos
+        "FIX", // flake8-fixme
+        "ERA", // eradicate
+        "PD", // pandas-vet
+        "PGH", // pygrep-hooks
+        "PL", // Pylint
+        "TRY", // tryceratops
+        "FLY", // flynt
+        "NPY", // NumPy-specific rules
+        "FAST", // FastAPI
+        "AIR", // Airflow
+        "PERF", // Perflint
+        "FURB", // refurb
+        "DOC", // pydoclint
+        "RUF" // Ruff-specific rules
+    ]
 }
