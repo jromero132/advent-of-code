@@ -141,11 +141,10 @@ def get_response(url: str, data: dict = {}) -> requests.Response:
     Raises:
         ValueError: If the response status code is not 200 OK.
     """
-    # response = requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")}, data=data)
     response = (
-        requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")})
+        requests.post(url, cookies={"session": os.getenv("AOC_COOKIE", "")}, data=data)
         if data
-        else requests.post(url, cookies={"session": os.getenv("AOC_COOKIE", "")}, data=data)
+        else requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")})
     )
 
     if response.status_code != HTTPStatus.OK:
@@ -579,7 +578,7 @@ def test(args: argparse.Namespace):
                 f.write(ans_decoded)
                 f.write("\n")
 
-            print(f"Answer={font_color_blue(ans_decoded)}")
+            print(f"Answer='{font_color_blue(ans_decoded)}'")
             pyperclip.copy(ans_decoded)
 
             if args.submit:
