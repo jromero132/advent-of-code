@@ -20,7 +20,7 @@
 [![AoC 2021](https://img.shields.io/badge/2021-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
 [![AoC 2022](https://img.shields.io/badge/2022-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
 [![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
-[![AoC 2024](https://img.shields.io/badge/2024-⭐%204-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2024)  
+[![AoC 2024](https://img.shields.io/badge/2024-⭐%206-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2024)  
 <!-- Badges of stars: end -->
 ---
 This project contains all my solutions for [Advent of Code](https://adventofcode.com/) challenges.
@@ -78,7 +78,7 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 | [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
 | [2022](year/2022) | ⭐️10  | https://adventofcode.com/2022 |
 | [2023](year/2023) | ⭐️10  | https://adventofcode.com/2023 |
-| [2024](year/2024) | ⭐️4  | https://adventofcode.com/2024 |
+| [2024](year/2024) | ⭐️6  | https://adventofcode.com/2024 |
 <!-- Table summary of years: end -->
 
 ## Features
