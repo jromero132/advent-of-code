@@ -36,13 +36,13 @@ repos:
           - types-requests
         exclude: "year"
 
-  - repo: https://github.com/pycqa/pydocstyle
-    rev: 6.3.0
-    hooks:
-      - id: pydocstyle
-        args:
-          - --convention=google
-        exclude: "docs|tests|year|template.py"
+  # - repo: https://github.com/pycqa/pydocstyle
+  #   rev: 6.3.0
+  #   hooks:
+  #     - id: pydocstyle
+  #       args:
+  #         - --convention=google
+  #       exclude: "docs|tests|year|template.py"
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.17.0

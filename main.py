@@ -1,4 +1,5 @@
-"""Main module for the Advent of Code project.
+"""
+Main module for the Advent of Code project.
 
 This module provides a command-line interface for managing and testing solutions to Advent of Code
 challenges. It includes functionality for creating tasks, running tests, submit answers and parsing
@@ -9,11 +10,11 @@ parsing to handle user inputs effectively.
 """
 
 import argparse
+import datetime
 import inspect
 import os
 import subprocess
 import sys
-from datetime import date
 from http import HTTPStatus
 from pathlib import Path
 
@@ -25,12 +26,14 @@ from dotenv import load_dotenv
 DAY_PATH = "year/{year}/day{day:02}"
 TASK_PATH = DAY_PATH + "/task{task}"
 TESTS_PATH = f"{TASK_PATH}/tests"
+REQUESTS_TIMEOUT = 5  # 5 seconds
 
 load_dotenv()
 
 
 def font_color(txt: str, color: str) -> str:
-    """Formats the given text with the specified color.
+    """
+    Format the given text with the specified color.
 
     This function takes a string and a color code, returning the text wrapped in the color code for
     terminal output. The formatting is reset after the text to ensure subsequent text is not
@@ -42,12 +45,14 @@ def font_color(txt: str, color: str) -> str:
 
     Returns:
         str: The formatted text with the specified color.
+
     """
     return f"{color}{txt}\033[0m"
 
 
 def font_color_green(txt: str) -> str:
-    """Formats the given text in green color.
+    """
+    Format the given text in green color.
 
     This function wraps the provided text in a green color code for terminal output, allowing the
     text to be displayed in green. It utilizes the `font_color` function to apply the formatting.
@@ -57,12 +62,14 @@ def font_color_green(txt: str) -> str:
 
     Returns:
         str: The formatted text in green color.
+
     """
     return font_color(txt, "\033[92m")
 
 
 def font_color_red(txt: str) -> str:
-    """Formats the given text in red color.
+    """
+    Format the given text in red color.
 
     This function wraps the provided text in a red color code for terminal output, allowing the text
     to be displayed in red. It utilizes the `font_color` function to apply the formatting.
@@ -72,12 +79,14 @@ def font_color_red(txt: str) -> str:
 
     Returns:
         str: The formatted text in red color.
+
     """
     return font_color(txt, "\033[91m")
 
 
 def font_color_orange(txt: str) -> str:
-    """Formats the given text in orange color.
+    """
+    Format the given text in orange color.
 
     This function wraps the provided text in an orange color code for terminal output, allowing the
     text to be displayed in orange. It utilizes the `font_color` function to apply the formatting.
@@ -87,12 +96,14 @@ def font_color_orange(txt: str) -> str:
 
     Returns:
         str: The formatted text in orange color.
+
     """
     return font_color(txt, "\033[93m")
 
 
 def font_color_blue(txt: str) -> str:
-    """Formats the given text in blue color.
+    """
+    Format the given text in blue color.
 
     This function wraps the provided text in a blue color code for terminal output, allowing the
     text to be displayed in blue. It utilizes the `font_color` function to apply the formatting.
@@ -102,12 +113,14 @@ def font_color_blue(txt: str) -> str:
 
     Returns:
         str: The formatted text in blue color.
+
     """
     return font_color(txt, "\033[94m")
 
 
 def get_url(year: int, day: int) -> str:
-    """Constructs the URL for a specific Advent of Code challenge.
+    """
+    Construct the URL for a specific Advent of Code challenge.
 
     This function generates a URL based on the provided year and day parameters, allowing users to
     easily access the corresponding challenge page. The URL is formatted to point to the specific
@@ -119,12 +132,14 @@ def get_url(year: int, day: int) -> str:
 
     Returns:
         str: The constructed URL for the specified challenge.
+
     """
     return f"https://adventofcode.com/{year}/day/{day}"
 
 
-def get_response(url: str, data: dict = {}) -> requests.Response:
-    """Fetches the HTTP response from the specified URL.
+def get_response(url: str, data: dict | None = None) -> requests.Response:
+    """
+    Fetch the HTTP response from the specified URL.
 
     This function sends a GET request to the provided URL using a session cookie for authentication.
     If the response status code indicates an error, it raises a ValueError with details about the
@@ -140,24 +155,36 @@ def get_response(url: str, data: dict = {}) -> requests.Response:
 
     Raises:
         ValueError: If the response status code is not 200 OK.
+
     """
     response = (
-        requests.post(url, cookies={"session": os.getenv("AOC_COOKIE", "")}, data=data)
-        if data
-        else requests.get(url, cookies={"session": os.getenv("AOC_COOKIE", "")})
+        requests.get(
+            url,
+            cookies={"session": os.getenv("AOC_COOKIE", "")},
+            timeout=REQUESTS_TIMEOUT,
+        )
+        if data is None
+        else requests.post(
+            url,
+            cookies={"session": os.getenv("AOC_COOKIE", "")},
+            data=data,
+            timeout=REQUESTS_TIMEOUT,
+        )
     )
 
     if response.status_code != HTTPStatus.OK:
-        raise ValueError(
+        error_msg = (
             f"Querying the url {url} resulted in status code {response.status_code} with the "
             f"following text: {response.text}"
         )
+        raise ValueError(error_msg)
 
     return response
 
 
 def get_html(year: int, day: int) -> str:
-    """Retrieves the HTML content for a specific Advent of Code challenge.
+    """
+    Retrieve the HTML content for a specific Advent of Code challenge.
 
     This function constructs the URL for the given year and day, then fetches the corresponding HTML
     content by making an HTTP request. It returns the text of the response, allowing users to access
@@ -169,12 +196,14 @@ def get_html(year: int, day: int) -> str:
 
     Returns:
         str: The HTML content of the specified challenge page.
+
     """
     return get_response(get_url(year, day)).text
 
 
 def get_input(year: int, day: int) -> str:
-    """Retrieves the input data for a specific Advent of Code challenge.
+    """
+    Retrieve the input data for a specific Advent of Code challenge.
 
     This function constructs the URL for the given year and day, then fetches the input data by
     making an HTTP request to the appropriate endpoint. It returns the text of the response,
@@ -186,12 +215,14 @@ def get_input(year: int, day: int) -> str:
 
     Returns:
         str: The input data for the specified challenge.
+
     """
     return get_response(f"{get_url(year, day)}/input").text
 
 
 def submit_answer(year: int, day: int, task: int, answer: str) -> int:
-    """Submit an answer for a specific task of a given day in a specified year.
+    """
+    Submit an answer for a specific task of a given day in a specified year.
 
     This function sends the provided answer to the Advent of Code server for the specified  year,
     day, and task level, and checks if the response indicates that the answer is correct.
@@ -205,13 +236,11 @@ def submit_answer(year: int, day: int, task: int, answer: str) -> int:
     Returns:
         int: 0 if the answer is wrong, 1 if the answer if correct and -1 if the problem was already
             solved.
+
     """
     response = get_response(
         f"{get_url(year, day)}/answer", data={"level": task, "answer": answer}
     ).text
-
-    with open("a.txt", "w", encoding="utf-8") as f:
-        f.write(response)
 
     return (
         1
@@ -225,7 +254,8 @@ def submit_answer(year: int, day: int, task: int, answer: str) -> int:
 
 # Simplification of https://github.com/dlon/html2markdown/blob/master/html2markdown.py
 def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
-    """Converts an HTML tag and its children into Markdown format.
+    """
+    Convert an HTML tag and its children into Markdown format.
 
     This function processes an HTML structure, transforming specific HTML elements into their
     corresponding Markdown representations while handling footnotes. It returns the converted
@@ -239,12 +269,14 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
 
     Raises:
         ValueError: If an unsupported HTML tag is encountered during conversion.
+
     """
     root_tag = tag
     footnotes: list[str] = []
 
-    def html_tags_to_markdown(tag: bs4.element.Tag):
-        """Convert HTML tags to Markdown format recursively.
+    def html_tags_to_markdown(tag: bs4.element.Tag) -> None:
+        """
+        Convert HTML tags to Markdown format recursively.
 
         This function processes an HTML tag and its children, transforming specific HTML elements
         into their Markdown equivalents. It modifies the tag in place, allowing for a structured
@@ -255,6 +287,7 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
 
         Raises:
             ValueError: If an unsupported HTML tag is encountered.
+
         """
         for child in tag.find_all(recursive=False):
             html_tags_to_markdown(child)
@@ -296,7 +329,8 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                     tag.insert_after("*")
 
                 else:
-                    raise ValueError(f"Missing condition for tag: {tag}")
+                    error_msg = f"Missing condition for tag: {tag}"
+                    raise ValueError(error_msg)
 
                 tag.unwrap()
 
@@ -326,7 +360,8 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 pass
 
             case _:
-                raise ValueError(f"Missing condition for tag: {tag}")
+                error_msg = f"Missing condition for tag: {tag}"
+                raise ValueError(error_msg)
 
     html_tags_to_markdown(root_tag)
     content = root_tag.text
@@ -336,7 +371,8 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
 
 
 def get_markdown(year: int, day: int) -> list[str]:
-    """Retrieves and converts the articles of a specific Advent of Code challenge to Markdown.
+    """
+    Retrieve and converts the articles of a specific Advent of Code challenge to Markdown.
 
     This function fetches the HTML content for the given year and day, parses it to extract the
     articles, and converts each article into Markdown format. It returns a list of Markdown strings
@@ -348,6 +384,7 @@ def get_markdown(year: int, day: int) -> list[str]:
 
     Returns:
         list[str]: A list of Markdown representations of the articles.
+
     """
     soup = bs4.BeautifulSoup(get_html(year, day), features="html.parser")
     if soup.body is None or soup.body.main is None:
@@ -360,8 +397,9 @@ def get_markdown(year: int, day: int) -> list[str]:
     return [convert_html_to_markdown(article) for article in articles]
 
 
-def create(args: argparse.Namespace):
-    """Creates task directories and files for a specific Advent of Code challenge.
+def create(args: argparse.Namespace) -> None:
+    """
+    Create task directories and files for a specific Advent of Code challenge.
 
     This function generates directories and files for each task of the specified challenge year and
     day. It reads a template file if provided, replaces placeholders with the year and day, and
@@ -373,10 +411,11 @@ def create(args: argparse.Namespace):
 
     Raises:
         FileNotFoundError: If the specified template file does not exist.
+
     """
     template_content = ""
     if args.template and (template := Path(args.template)).exists():
-        with open(template, encoding="utf-8") as f:
+        with template.open(encoding="utf-8") as f:
             template_content = f.read().replace("`year`", str(args.year))
             template_content = template_content.replace("`day`", str(args.day))
 
@@ -385,12 +424,12 @@ def create(args: argparse.Namespace):
     for i, md in enumerate(mds, start=1):
         task_dir = Path(TASK_PATH.format(year=args.year, day=args.day, task=i))
         task_dir.mkdir(parents=True, exist_ok=True)
-        with open(task_dir / "description.md", "w", encoding="utf-8") as f:
+        with Path(task_dir / "description.md").open("w", encoding="utf-8") as f:
             f.write(md)
 
         code_content = template_content.replace("`task`", str(i))
         if not (py_file := task_dir / "main.py").exists():
-            with open(py_file, "w", encoding="utf-8") as f:
+            with py_file.open("w", encoding="utf-8") as f:
                 f.write(code_content)
 
         test_dir = Path(TESTS_PATH.format(year=args.year, day=args.day, task=i))
@@ -398,14 +437,15 @@ def create(args: argparse.Namespace):
         (test_dir / "01.in").touch()
         (test_dir / "01.out").touch()
 
-    with open(
-        f"{DAY_PATH.format(year=args.year, day=args.day)}/task.in", "w", encoding="utf-8"
+    with Path(f"{DAY_PATH.format(year=args.year, day=args.day)}/task.in").open(
+        "w", encoding="utf-8"
     ) as f:
         f.write(get_input(args.year, args.day))
 
 
-def create_cli(subparsers: argparse._SubParsersAction):
-    """Sets up the command-line interface for the 'create' command.
+def create_cli(subparsers: argparse._SubParsersAction) -> None:
+    """
+    Set up the command-line interface for the 'create' command.
 
     This function configures the argument parser for the 'create' command, allowing users to
     specify the year, day, and an optional template file when deploying the project. It ensures
@@ -414,15 +454,17 @@ def create_cli(subparsers: argparse._SubParsersAction):
     Args:
         subparsers (argparse._SubParsersAction): The subparsers action object to which the 'create'
             command parser will be added.
+
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
-        "create", help="Create a new Advent of Code challenge setup."
+        "create",
+        help="Create a new Advent of Code challenge setup.",
     )
     parser.add_argument(
         "-y",
         "--year",
         type=int,
-        default=date.today().year,
+        default=datetime.datetime.now(tz=datetime.timezone.utc).year,
         help="The year of the Advent of Code challenge (e.g., 2024). Defaults to the current year.",
     )
     parser.add_argument(
@@ -443,8 +485,9 @@ def create_cli(subparsers: argparse._SubParsersAction):
     )
 
 
-def maketests(args: argparse.Namespace):
-    """Creates input and output test files for a specific task.
+def maketests(args: argparse.Namespace) -> None:
+    """
+    Create input and output test files for a specific task.
 
     This function generates a directory for test files based on the specified year, day, and task,
     and creates input and output files for a given number of tests. It ensures that the necessary
@@ -453,6 +496,7 @@ def maketests(args: argparse.Namespace):
     Args:
         args (argparse.Namespace): The command-line arguments containing the year, day, task, and
             number of tests to create.
+
     """
     tests_dir = Path(TESTS_PATH.format(year=args.year, day=args.day, task=args.task))
     tests_dir.mkdir(exist_ok=True, parents=True)
@@ -465,8 +509,9 @@ def maketests(args: argparse.Namespace):
             test_out.touch()
 
 
-def maketests_cli(subparsers: argparse._SubParsersAction):
-    """Sets up the command-line interface for the 'maketests' command.
+def maketests_cli(subparsers: argparse._SubParsersAction) -> None:
+    """
+    Set up the command-line interface for the 'maketests' command.
 
     This function configures the argument parser for the 'maketests' command, allowing users to
     specify the year, day, task, and number of test files to create. It ensures that the necessary
@@ -475,15 +520,17 @@ def maketests_cli(subparsers: argparse._SubParsersAction):
     Args:
         subparsers (argparse._SubParsersAction): The subparsers action object to which the
             'maketests' command parser will be added.
+
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
-        "maketests", help="Create test files for one Advent of Code challenge."
+        "maketests",
+        help="Create test files for one Advent of Code challenge.",
     )
     parser.add_argument(
         "-y",
         "--year",
         type=int,
-        default=date.today().year,
+        default=datetime.datetime.now(tz=datetime.timezone.utc).year,
         help="The year of the Advent of Code challenge (e.g., 2024). Defaults to the current year.",
     )
     parser.add_argument(
@@ -509,8 +556,9 @@ def maketests_cli(subparsers: argparse._SubParsersAction):
     )
 
 
-def test(args: argparse.Namespace):
-    """Runs tests for a specific Advent of Code task and compares outputs.
+def test(args: argparse.Namespace) -> None:
+    """
+    Run tests for a specific Advent of Code task and compares outputs.
 
     This function executes a series of input tests against a solution file, comparing the actual
     output to the expected output. It reports the results of each test, indicating whether they
@@ -523,10 +571,12 @@ def test(args: argparse.Namespace):
     Raises:
         FileNotFoundError: If the input or output test files do not exist.
         subprocess.CalledProcessError: If the solution script fails to execute.
+
     """
 
     def get_code_output(sol_file: Path, inp: Path) -> bytes:
-        """Execute a Python solution file with input from a specified file.
+        """
+        Execute a Python solution file with input from a specified file.
 
         This function runs a Python script located at `sol_file`, using the contents of `inp` as its
         standard input. It captures and returns the output of the script as bytes, allowing for
@@ -538,8 +588,9 @@ def test(args: argparse.Namespace):
 
         Returns:
             bytes: The output produced by the executed script.
+
         """
-        with open(inp, encoding="utf-8") as in_file:
+        with inp.open(encoding="utf-8") as in_file:
             return subprocess.check_output(["python", str(sol_file)], stdin=in_file).strip()
 
     day_dir = Path(DAY_PATH.format(year=args.year, day=args.day)).absolute()
@@ -551,7 +602,7 @@ def test(args: argparse.Namespace):
     for inp in sorted(f for f in tests_dir.iterdir() if f.suffix == ".in"):
         print(f"  - {inp.name}    ", end="")
         ans = get_code_output(sol_file, inp)
-        with open(inp.with_suffix(".out"), "rb") as out_file:
+        with inp.with_suffix(".out").open("rb") as out_file:
             sol = out_file.readline().strip()
 
         if ans == sol:
@@ -564,7 +615,7 @@ def test(args: argparse.Namespace):
                 + font_color_orange(f"found={ans.decode('utf-8')}")
                 + " ; "
                 + font_color_blue(f"expected={sol.decode('utf8')}")
-                + "]"
+                + "]",
             )
             failed_testcases += 1
             if not args.continue_on_failure:
@@ -574,7 +625,7 @@ def test(args: argparse.Namespace):
         print(font_color_green("All tests passed!"))
         if args.answer or args.submit:
             ans_decoded = get_code_output(sol_file, day_dir / "task.in").decode("utf-8")
-            with open(day_dir / f"task{args.task}.out", "w", encoding="utf-8") as f:
+            with Path(day_dir / f"task{args.task}.out").open("w", encoding="utf-8") as f:
                 f.write(ans_decoded)
                 f.write("\n")
 
@@ -600,8 +651,9 @@ def test(args: argparse.Namespace):
         )
 
 
-def test_cli(subparsers: argparse._SubParsersAction):
-    """Sets up the command-line interface for the 'test' command.
+def test_cli(subparsers: argparse._SubParsersAction) -> None:
+    """
+    Set up the command-line interface for the 'test' command.
 
     This function configures the argument parser for the 'test' command, allowing users to specify
     the year, day, task, and options for continuing on failure or solving the task. It ensures that
@@ -610,6 +662,7 @@ def test_cli(subparsers: argparse._SubParsersAction):
     Args:
         subparsers (argparse._SubParsersAction): The subparsers action object to which the 'test'
             command parser will be added.
+
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
         "test", help="Run tests for one Advent of Code challenge."
@@ -618,7 +671,7 @@ def test_cli(subparsers: argparse._SubParsersAction):
         "-y",
         "--year",
         type=int,
-        default=date.today().year,
+        default=datetime.datetime.now(tz=datetime.timezone.utc).year,
         help="The year of the Advent of Code challenge (e.g., 2024). Defaults to the current year.",
     )
     parser.add_argument(
@@ -657,7 +710,8 @@ def test_cli(subparsers: argparse._SubParsersAction):
 
 
 def parse_args() -> argparse.Namespace:
-    """Parses command-line arguments for the application.
+    """
+    Parse command-line arguments for the application.
 
     This function sets up an argument parser with subcommands based on functions that end with
     '_cli'. It returns the parsed arguments as a Namespace object, allowing for easy access to the
@@ -665,6 +719,7 @@ def parse_args() -> argparse.Namespace:
 
     Returns:
         argparse.Namespace: The parsed command-line arguments.
+
     """
     parser = argparse.ArgumentParser(
         "aoc",
@@ -683,13 +738,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main():
-    """Main entry point for the application.
-
-    This function parses command-line arguments and dynamically calls the corresponding command
-    function based on the user's input. It serves as the central hub for executing the appropriate
-    functionality based on the specified command.
-    """
+def main() -> None:
     args = parse_args()
     getattr(sys.modules[__name__], args.command)(args)
 
