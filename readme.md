@@ -66,16 +66,16 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️12  | <https://adventofcode.com/2015> |
-| [2016](year/2016) | ⭐️10  | <https://adventofcode.com/2016> |
-| [2017](year/2017) | ⭐️10  | <https://adventofcode.com/2017> |
-| [2018](year/2018) | ⭐️10  | <https://adventofcode.com/2018> |
-| [2019](year/2019) | ⭐️10  | <https://adventofcode.com/2019> |
-| [2020](year/2020) | ⭐️10  | <https://adventofcode.com/2020> |
-| [2021](year/2021) | ⭐️10  | <https://adventofcode.com/2021> |
-| [2022](year/2022) | ⭐️10  | <https://adventofcode.com/2022> |
-| [2023](year/2023) | ⭐️10  | <https://adventofcode.com/2023> |
-| [2024](year/2024) | ⭐️6  | <https://adventofcode.com/2024> |
+| [2015](year/2015) | ⭐️12  | https://adventofcode.com/2015 |
+| [2016](year/2016) | ⭐️10  | https://adventofcode.com/2016 |
+| [2017](year/2017) | ⭐️10  | https://adventofcode.com/2017 |
+| [2018](year/2018) | ⭐️10  | https://adventofcode.com/2018 |
+| [2019](year/2019) | ⭐️10  | https://adventofcode.com/2019 |
+| [2020](year/2020) | ⭐️10  | https://adventofcode.com/2020 |
+| [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
+| [2022](year/2022) | ⭐️10  | https://adventofcode.com/2022 |
+| [2023](year/2023) | ⭐️10  | https://adventofcode.com/2023 |
+| [2024](year/2024) | ⭐️6  | https://adventofcode.com/2024 |
 <!-- Table summary of years: end -->
 
 ## Features
