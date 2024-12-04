@@ -1,11 +1,8 @@
 # Advent of Code Solutions and CLI
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](\
-<https://buymeacoffee.com/jromero132> "Buy Me a Coffee - jromero132")
-[![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](\
-<https://adventofcode.com/> "Advent of Code homepage")
-[![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](\
-<https://python.org> "Go to Python homepage")
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](<https://buymeacoffee.com/jromero132> "Buy Me a Coffee - jromero132")
+[![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](<https://adventofcode.com/> "Advent of Code homepage")
+[![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](<https://python.org> "Go to Python homepage")
 ![Last commit](https://img.shields.io/github/last-commit/jromero132/advent-of-code "Last commit")
 
 ---
@@ -69,16 +66,16 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️12  | https://adventofcode.com/2015 |
-| [2016](year/2016) | ⭐️10  | https://adventofcode.com/2016 |
-| [2017](year/2017) | ⭐️10  | https://adventofcode.com/2017 |
-| [2018](year/2018) | ⭐️10  | https://adventofcode.com/2018 |
-| [2019](year/2019) | ⭐️10  | https://adventofcode.com/2019 |
-| [2020](year/2020) | ⭐️10  | https://adventofcode.com/2020 |
-| [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
-| [2022](year/2022) | ⭐️10  | https://adventofcode.com/2022 |
-| [2023](year/2023) | ⭐️10  | https://adventofcode.com/2023 |
-| [2024](year/2024) | ⭐️6  | https://adventofcode.com/2024 |
+| [2015](year/2015) | ⭐️12  | <https://adventofcode.com/2015> |
+| [2016](year/2016) | ⭐️10  | <https://adventofcode.com/2016> |
+| [2017](year/2017) | ⭐️10  | <https://adventofcode.com/2017> |
+| [2018](year/2018) | ⭐️10  | <https://adventofcode.com/2018> |
+| [2019](year/2019) | ⭐️10  | <https://adventofcode.com/2019> |
+| [2020](year/2020) | ⭐️10  | <https://adventofcode.com/2020> |
+| [2021](year/2021) | ⭐️10  | <https://adventofcode.com/2021> |
+| [2022](year/2022) | ⭐️10  | <https://adventofcode.com/2022> |
+| [2023](year/2023) | ⭐️10  | <https://adventofcode.com/2023> |
+| [2024](year/2024) | ⭐️6  | <https://adventofcode.com/2024> |
 <!-- Table summary of years: end -->
 
 ## Features
