@@ -14,7 +14,7 @@
 [![AoC 2018](https://img.shields.io/badge/2018-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
 [![AoC 2019](https://img.shields.io/badge/2019-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2019)  
 [![AoC 2020](https://img.shields.io/badge/2020-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
-[![AoC 2021](https://img.shields.io/badge/2021-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
+[![AoC 2021](https://img.shields.io/badge/2021-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
 [![AoC 2022](https://img.shields.io/badge/2022-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
 [![AoC 2023](https://img.shields.io/badge/2023-⭐%2010-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 [![AoC 2024](https://img.shields.io/badge/2024-⭐%2012-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2024)  
@@ -72,7 +72,7 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 | [2018](year/2018) | ⭐️12  | https://adventofcode.com/2018 |
 | [2019](year/2019) | ⭐️12  | https://adventofcode.com/2019 |
 | [2020](year/2020) | ⭐️12  | https://adventofcode.com/2020 |
-| [2021](year/2021) | ⭐️10  | https://adventofcode.com/2021 |
+| [2021](year/2021) | ⭐️12  | https://adventofcode.com/2021 |
 | [2022](year/2022) | ⭐️10  | https://adventofcode.com/2022 |
 | [2023](year/2023) | ⭐️10  | https://adventofcode.com/2023 |
 | [2024](year/2024) | ⭐️12  | https://adventofcode.com/2024 |
