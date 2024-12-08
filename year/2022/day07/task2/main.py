@@ -50,9 +50,6 @@ def update_size(cwd: Dir) -> None:  # update directory size
     Args:
         cwd (Dir): The directory object whose size is to be updated.
 
-    Returns:
-        None: This function does not return a value; it updates the size attribute in place.
-
     """
     cwd.size = 0
     for d in cwd.subdirs.values():
