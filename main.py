@@ -239,7 +239,8 @@ def submit_answer(year: int, day: int, task: int, answer: str) -> int:
 
     """
     response = get_response(
-        f"{get_url(year, day)}/answer", data={"level": task, "answer": answer}
+        f"{get_url(year, day)}/answer",
+        data={"level": task, "answer": answer},
     ).text
 
     return (
@@ -438,7 +439,8 @@ def create(args: argparse.Namespace) -> None:
         (test_dir / "01.out").touch()
 
     with Path(f"{DAY_PATH.format(year=args.year, day=args.day)}/task.in").open(
-        "w", encoding="utf-8"
+        "w",
+        encoding="utf-8",
     ) as f:
         f.write(get_input(args.year, args.day))
 
@@ -603,7 +605,7 @@ def test(args: argparse.Namespace) -> None:
         print(f"  - {inp.name}    ", end="")
         ans = get_code_output(sol_file, inp)
         with inp.with_suffix(".out").open("rb") as out_file:
-            sol = out_file.readline().strip()
+            sol = out_file.read().strip()
 
         if ans == sol:
             print(font_color_green("OK"))
@@ -629,7 +631,8 @@ def test(args: argparse.Namespace) -> None:
                 f.write(ans_decoded)
                 f.write("\n")
 
-            print(f"Answer='{font_color_blue(ans_decoded)}'")
+            print("Answer:")
+            print(font_color_blue(ans_decoded))
             pyperclip.copy(ans_decoded)
 
             if args.submit:
@@ -646,8 +649,8 @@ def test(args: argparse.Namespace) -> None:
     else:
         print(
             font_color_red(
-                f"{failed_testcases} {'testcase' if failed_testcases == 1 else 'testcases'} failed!"
-            )
+                f"{failed_testcases} {'testcase' if failed_testcases == 1 else 'testcases'} failed!",
+            ),
         )
 
 
@@ -665,7 +668,8 @@ def test_cli(subparsers: argparse._SubParsersAction) -> None:
 
     """
     parser: argparse.ArgumentParser = subparsers.add_parser(
-        "test", help="Run tests for one Advent of Code challenge."
+        "test",
+        help="Run tests for one Advent of Code challenge.",
     )
     parser.add_argument(
         "-y",
