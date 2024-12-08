@@ -22,6 +22,7 @@ def main() -> None:
             crt[i] += "#" if x - 1 <= j <= x + 1 else " "
             j += 1
             if j == m:
+                crt[i] = crt[i].strip()
                 j = 0
                 i += 1
 
