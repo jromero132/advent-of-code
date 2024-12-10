@@ -1,9 +1,10 @@
 """
 Author: Jose A. Romero
-Puzzle: Advent of Code (year=2019 ; day=5 ; task=2)
+Puzzle: Advent of Code (year=2019 ; day=7 ; task=1)
 """
 
 import sys
+from itertools import permutations
 
 
 def get_param(memory: list[int], idx: int, param: int) -> int:
@@ -65,7 +66,7 @@ def execute_arithmetic(memory: list[int], i: int, opcode: int) -> int:  # opcode
     return i + 4
 
 
-def execute_input(memory: list[int], i: int) -> int:  # opcode = 3
+def execute_input(memory: list[int], i: int, inp: int) -> int:  # opcode = 3
     """
     Execute input operations by storing a predefined value in memory.
 
@@ -75,12 +76,13 @@ def execute_input(memory: list[int], i: int) -> int:  # opcode = 3
     Args:
         memory (list[int]): The list representing the memory.
         i (int): The current instruction pointer index.
+        inp (int): The input value to be stored in memory at the specified index.
 
     Returns:
         int: The updated instruction pointer index after executing the input operation.
 
     """
-    memory[memory[i + 1]] = 5  # Initial input
+    memory[memory[i + 1]] = inp
     return i + 2
 
 
@@ -123,7 +125,13 @@ def execute_jump(memory: list[int], i: int, opcode: int) -> int:  # opcode = 5, 
     return param2 if (opcode == 5 and param1 != 0) or (opcode == 6 and param1 == 0) else i + 3
 
 
-def execute_instruction(memory: list[int], i: int, opcode: int, output: int) -> tuple[int, int]:
+def execute_instruction(
+    memory: list[int],
+    i: int,
+    opcode: int,
+    inp: int,
+    out: int,
+) -> tuple[int, int]:
     """
     Execute a specific instruction based on the provided opcode.
 
@@ -135,52 +143,62 @@ def execute_instruction(memory: list[int], i: int, opcode: int, output: int) -> 
         memory (list[int]): The list representing the memory.
         i (int): The current instruction pointer index.
         opcode (int): The operation code indicating the type of instruction to execute.
-        output (int): The current output value.
+        inp (int): The input value to be stored in memory at the specified index.
+        out (int): The current output value.
 
     Returns:
         tuple[int, int]: A tuple containing the updated instruction pointer index and the output value.
 
     """
     if opcode in (1, 2, 7, 8):
-        return execute_arithmetic(memory, i, opcode), output
+        return execute_arithmetic(memory, i, opcode), out
 
     if opcode == 3:
-        return execute_input(memory, i), output
+        return execute_input(memory, i, inp), out
 
     if opcode == 4:
-        assert output == 0
+        assert out == 0
         return execute_output(memory, i)
 
     if opcode in (5, 6):
-        return execute_jump(memory, i, opcode), output
+        return execute_jump(memory, i, opcode), out
 
     return None  # Error case
 
 
-def run_intcode(memory: list[int]) -> int:
+def run_intcode(memory: list[int], inputs: list[int]) -> int:
     """
-    Run the Intcode program with the provided memory.
+    Run the Intcode program with the provided memory and inputs.
 
-    This function executes the Intcode instructions stored in memory until it encounters the halt instruction (99).
-    It processes each instruction and returns the final output value produced by the program.
+    This function processes the Intcode instructions stored in memory, using the provided inputs to execute the program.
+    It continues executing until it encounters the halt instruction (99) and returns the final output value.
 
     Args:
         memory (list[int]): The list representing the Intcode program's memory.
+        inputs (list[int]): The list of input values to be used during execution.
 
     Returns:
         int: The output value produced by the Intcode program after execution.
 
     """
-    i, output = 0, 0
+    i, input_idx, output = 0, -1, 0
     while i < len(memory) and memory[i] != 99:
-        i, output = execute_instruction(memory, i, memory[i] % 10, output)
+        input_idx += memory[i] % 10 == 3
+        i, output = execute_instruction(memory, i, memory[i] % 10, inputs[input_idx], output)
     return output
 
 
 def main() -> None:
+    amplifiers_cnt = 5
     memory = [int(n) for n in sys.stdin.readline().split(",")]
-    output = run_intcode(memory)
-    print(output)
+    ans = 0
+    for permutation in permutations(range(amplifiers_cnt)):
+        output = 0
+        for phase_setting in permutation:
+            output = run_intcode(memory.copy(), [phase_setting, output])
+
+        ans = max(ans, output)
+    print(ans)
 
 
 if __name__ == "__main__":
