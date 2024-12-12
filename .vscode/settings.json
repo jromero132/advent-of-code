@@ -12,6 +12,8 @@
     },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
+    // Git options
+    "git.autorefresh": true,
     // Code Spell settings
     "cSpell.ignoreWords": [
         "aeiou",
