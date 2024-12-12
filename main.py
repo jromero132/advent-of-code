@@ -600,31 +600,39 @@ def test(args: argparse.Namespace) -> None:
     tests_dir = Path(TESTS_PATH.format(year=args.year, day=args.day, task=args.task)).absolute()
     sol_file = task_dir / "main.py"
     failed_testcases = 0
+    no_tests = True
     print(f"Start testing AOC y{args.year}/d{args.day}/t{args.task}...")
-    for inp in sorted(f for f in tests_dir.iterdir() if f.suffix == ".in"):
-        print(f"  - {inp.name}    ", end="")
-        ans = get_code_output(sol_file, inp)
-        with inp.with_suffix(".out").open("rb") as out_file:
-            sol = out_file.read().strip()
+    if tests_dir.exists():
+        for inp in sorted(f for f in tests_dir.iterdir() if f.suffix == ".in"):
+            no_tests = False
+            print(f"  - {inp.name}    ", end="")
+            ans = get_code_output(sol_file, inp)
+            with inp.with_suffix(".out").open("rb") as out_file:
+                sol = out_file.read().strip()
 
-        if ans == sol:
-            print(font_color_green("OK"))
+            if ans == sol:
+                print(font_color_green("OK"))
 
-        else:
-            print(
-                font_color_red("FAIL")
-                + " ["
-                + font_color_orange(f"found={ans.decode('utf-8')}")
-                + " ; "
-                + font_color_blue(f"expected={sol.decode('utf8')}")
-                + "]",
-            )
-            failed_testcases += 1
-            if not args.continue_on_failure:
-                break
+            else:
+                print(
+                    font_color_red("FAIL")
+                    + " ["
+                    + font_color_orange(f"found={ans.decode('utf-8')}")
+                    + " ; "
+                    + font_color_blue(f"expected={sol.decode('utf8')}")
+                    + "]",
+                )
+                failed_testcases += 1
+                if not args.continue_on_failure:
+                    break
 
     if failed_testcases == 0:
-        print(font_color_green("All tests passed!"))
+        if no_tests:
+            print(font_color_orange("No test files found!"))
+
+        else:
+            print(font_color_green("All tests passed!"))
+
         if args.answer or args.submit:
             ans_decoded = get_code_output(sol_file, day_dir / "task.in").decode("utf-8")
             with Path(day_dir / f"task{args.task}.out").open("w", encoding="utf-8") as f:
