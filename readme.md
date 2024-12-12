@@ -8,7 +8,7 @@
 ---
 
 <!-- Badges of stars: begin -->
-[![AoC 2015](https://img.shields.io/badge/2015-⭐%2014-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2015)
+[![AoC 2015](https://img.shields.io/badge/2015-⭐%2016-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2015)
 [![AoC 2016](https://img.shields.io/badge/2016-⭐%2014-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2016)
 [![AoC 2017](https://img.shields.io/badge/2017-⭐%2014-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2017)
 [![AoC 2018](https://img.shields.io/badge/2018-⭐%2014-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
@@ -66,7 +66,7 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️14  | https://adventofcode.com/2015 |
+| [2015](year/2015) | ⭐️16  | https://adventofcode.com/2015 |
 | [2016](year/2016) | ⭐️14  | https://adventofcode.com/2016 |
 | [2017](year/2017) | ⭐️14  | https://adventofcode.com/2017 |
 | [2018](year/2018) | ⭐️14  | https://adventofcode.com/2018 |
