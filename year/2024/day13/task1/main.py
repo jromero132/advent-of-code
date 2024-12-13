@@ -8,7 +8,22 @@ import sys
 INFINITY = 201  # Since no button will be pressed more than 100 times
 
 
-def solve(button_a: tuple[int, int], button_b: tuple[int, int], prize: tuple[int, int]):
+def solve(button_a: tuple[int, int], button_b: tuple[int, int], prize: tuple[int, int]) -> int:
+    """
+    Solve a linear equation system to find the fewest tokens to spend.
+
+    Calculates the minimum number of tokens required to reach a specific prize coordinate using two buttons. The
+    function handles both determinant and non-determinant scenarios for solving the linear equation.
+
+    Args:
+        button_a (tuple[int, int]): Coordinates of the first button (x, y).
+        button_b (tuple[int, int]): Coordinates of the second button (x, y).
+        prize (tuple[int, int]): Target coordinates to reach (x, y).
+
+    Returns:
+        int: The minimum number of button presses to reach the prize, or 0 if no valid solution exists.
+
+    """
     xa, ya = button_a
     xb, yb = button_b
     xp, yp = prize
