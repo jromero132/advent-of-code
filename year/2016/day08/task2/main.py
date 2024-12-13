@@ -46,7 +46,7 @@ def main() -> None:
                 for i in range(n):
                     grid[i][idx] = new_col[i]
 
-    print("\n".join("".join("#" if c else " " for c in row) for row in grid))  # RURUCEOEIL
+    print("\n".join("".join("█" if c else "░" for c in row) for row in grid))  # RURUCEOEIL
 
 
 if __name__ == "__main__":
