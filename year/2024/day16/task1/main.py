@@ -10,6 +10,25 @@ from collections import defaultdict
 
 
 def dijkstra(grid: list[str], sr: int, sc: int, er: int, ec: int) -> int:
+    """
+    Find the shortest path in a grid using a modified Dijkstra's algorithm.
+
+    function calculates the minimum distance between start and end points while considering directional constraints.
+    The algorithm explores grid paths with complex movement rules, allowing forward movement, counterclockwise, and
+    clockwise rotations. It uses a priority queue to track distances and explores different movement strategies
+    efficiently.
+
+    Args:
+        grid (list[str]): A 2D grid representing the map with traversable and blocked cells.
+        sr (int): Starting row coordinate.
+        sc (int): Starting column coordinate.
+        er (int): Ending row coordinate.
+        ec (int): Ending column coordinate.
+
+    Returns:
+        int: The minimum distance from the start to the end point.
+
+    """
     queue = [(0, (sr, sc), (0, 1))]
     distance = defaultdict(lambda: float("inf"))
     while queue:

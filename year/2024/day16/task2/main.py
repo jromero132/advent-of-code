@@ -10,6 +10,22 @@ from collections import defaultdict
 
 
 def dijkstra(grid: list[str], sr: int, sc: int) -> int:
+    """
+    Find the number of unique tiles visited at the minimum distance in a grid using a modified Dijkstra's algorithm.
+
+    The function calculates the minimum distance and tracks unique tiles reached. The algorithm explores grid paths with
+    complex movement rules, allowing forward movement, counterclockwise, and clockwise rotations. It uses a priority
+    queue to track distances, unique tiles, and explores different movement strategies efficiently.
+
+    Args:
+        grid (list[str]): A 2D grid representing the map with traversable and blocked cells.
+        sr (int): Starting row coordinate.
+        sc (int): Starting column coordinate.
+
+    Returns:
+        int: The number of unique tiles visited at the minimum distance.
+
+    """
     queue = [(0, (sr, sc), (0, 1), {(sr, sc)})]
     distance = defaultdict(lambda: float("inf"))
     ans, min_dist = set(), float("inf")
