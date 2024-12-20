@@ -7,3 +7,7 @@ __pycache__
 
 # Environment variables
 .env
+
+# My shell scripts for shorten the commands
+cr
+ts

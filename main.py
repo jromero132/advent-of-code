@@ -659,6 +659,7 @@ def test(args: argparse.Namespace) -> None:
                 f"{failed_testcases} {'testcase' if failed_testcases == 1 else 'testcases'} failed!",
             ),
         )
+        sys.exit(1)
 
 
 def test_cli(subparsers: argparse._SubParsersAction) -> None:
