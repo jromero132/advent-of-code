@@ -1,6 +1,6 @@
 """
 Author: Jose A. Romero
-Puzzle: Advent of Code (year=2018 ; day=9 ; task=1)
+Puzzle: Advent of Code (year=2018 ; day=9 ; task=2)
 """
 
 from __future__ import annotations
@@ -118,7 +118,7 @@ class LinkedList:
 
 def main() -> None:
     line = sys.stdin.read().strip().split()
-    players, marbles = int(line[0]), int(line[-2])
+    players, marbles = int(line[0]), int(line[-2]) * 100
     scores, board = [0] * players, LinkedList([0])
     for marble in range(1, marbles + 1):
         if marble % 23 == 0:
