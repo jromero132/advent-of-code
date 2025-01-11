@@ -1,4 +1,4 @@
-# 🎄 Advent of Code Solutions <!-- sum of stars 1: begin -->(⭐ 218)<!-- sum of stars 1: end --> and CLI 🎄
+# 🎄 Advent of Code Solutions (⭐ 218)<!-- sum of stars 1: end --> and CLI 🎄
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](<https://buymeacoffee.com/jromero132> "Buy Me a Coffee - jromero132")
 [![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](<https://adventofcode.com/> "Advent of Code homepage")
@@ -65,16 +65,16 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️18  | <https://adventofcode.com/2015> |
-| [2016](year/2016) | ⭐️18  | <https://adventofcode.com/2016> |
-| [2017](year/2017) | ⭐️18  | <https://adventofcode.com/2017> |
-| [2018](year/2018) | ⭐️18  | <https://adventofcode.com/2018> |
-| [2019](year/2019) | ⭐️18  | <https://adventofcode.com/2019> |
-| [2020](year/2020) | ⭐️16  | <https://adventofcode.com/2020> |
-| [2021](year/2021) | ⭐️18  | <https://adventofcode.com/2021> |
-| [2022](year/2022) | ⭐️28  | <https://adventofcode.com/2022> |
-| [2023](year/2023) | ⭐️16  | <https://adventofcode.com/2023> |
-| [2024](year/2024) | ⭐️50  | <https://adventofcode.com/2024> |
+| [2015](year/2015) | ⭐️18  | https://adventofcode.com/2015 |
+| [2016](year/2016) | ⭐️18  | https://adventofcode.com/2016 |
+| [2017](year/2017) | ⭐️18  | https://adventofcode.com/2017 |
+| [2018](year/2018) | ⭐️18  | https://adventofcode.com/2018 |
+| [2019](year/2019) | ⭐️18  | https://adventofcode.com/2019 |
+| [2020](year/2020) | ⭐️16  | https://adventofcode.com/2020 |
+| [2021](year/2021) | ⭐️18  | https://adventofcode.com/2021 |
+| [2022](year/2022) | ⭐️28  | https://adventofcode.com/2022 |
+| [2023](year/2023) | ⭐️16  | https://adventofcode.com/2023 |
+| [2024](year/2024) | ⭐️50  | https://adventofcode.com/2024 |
 <!-- Table summary of years: end -->
 
 ## Features
