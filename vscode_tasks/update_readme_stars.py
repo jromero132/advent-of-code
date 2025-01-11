@@ -90,13 +90,14 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]) -> None:
     # Place sum of stars
     sum_of_stars = sum(stars for _, stars in stars_data)
     print(f"Replacing `{path}` file with sum of stars: {sum_of_stars}")
-    sum_of_stars_mark = r"<!-- sum of stars -->"
-    sum_of_stars_pos = readme_text.find(sum_of_stars_mark)
-    readme_text = (
-        readme_text[:sum_of_stars_pos]
-        + f"(⭐ {sum_of_stars})"
-        + readme_text[sum_of_stars_pos + len(sum_of_stars_mark) :]
+    sum_of_stars_marks = (
+        (r"<!-- sum of stars 1 -->", r"<!-- end of sum of stars 1 -->"),
+        (r"<!-- sum of stars 2 -->", r"<!-- end of sum of stars 1 -->"),
     )
+    for begin_mark, end_mark in sum_of_stars_marks:
+        begin_pos = readme_text.find(begin_mark) + len(begin_mark)
+        end_pos = readme_text.find(end_mark)
+        readme_text = f"{readme_text[:begin_pos]}(⭐ {sum_of_stars}){readme_text[end_pos:]}"
 
     # Place table
     table_begin_mark = r"<!-- Table summary of years: begin -->"
