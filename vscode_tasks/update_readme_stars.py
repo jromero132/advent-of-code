@@ -1,4 +1,5 @@
-"""Module for updating the readme file with Advent of Code stars.
+"""
+Module for updating the readme file with Advent of Code stars.
 
 This module contains functions to retrieve the number of stars for each year of the Advent of Code
 and to update a readme file with badges and a summary table reflecting the stars data. It serves as
@@ -13,19 +14,8 @@ README_FILE_PATH = Path("readme.md")
 
 
 def get_stars_data(year_dir: Path) -> list[tuple[str, int]]:
-    """Retrieve the number of directories for each year in the specified directory.
-
-    This function scans the given directory for subdirectories representing years,
-    and counts the number of directories for each year, returning the results as a list of tuples.
-
-    Args:
-        year_dir (Path): The path to the directory containing year subdirectories.
-
-    Returns:
-        list[tuple[str, int]]: A list of tuples where each tuple contains the year as a string
-        and the corresponding count of directories as an integer.
     """
-    """Retrieve the number of stars for each year in the Advent of Code.
+    Retrieve the number of stars for each year in the Advent of Code.
 
     This function scans the specified directory for subdirectories representing years of the Advent
     of Code and counts the number of directories for each year. Each of these directories represents
@@ -39,6 +29,7 @@ def get_stars_data(year_dir: Path) -> list[tuple[str, int]]:
     Returns:
         list[tuple[str, int]]: A list of tuples where each tuple contains the year as a string and
             the corresponding count of stars (directories) as an integer.
+
     """
     print(f"Retrieving stars data for each year using the directory `{year_dir}`...")
     stars_data = [
@@ -52,8 +43,9 @@ def get_stars_data(year_dir: Path) -> list[tuple[str, int]]:
     return stars_data
 
 
-def update_readme_file(path: Path, stars_data: list[tuple[str, int]]):
-    """Update the readme file with badges for each year and a table of stars.
+def update_readme_file(path: Path, stars_data: list[tuple[str, int]]) -> None:
+    """
+    Update the readme file with badges for each year and a table of stars.
 
     This function generates badge links and a summary table for the Advent of Code stars based on
     the provided stars data, and updates the specified readme file accordingly.
@@ -65,6 +57,7 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]):
 
     Raises:
         FileNotFoundError: If the specified readme file does not exist.
+
     """
     print(f"Updating `{path}` file with stars_data = {stars_data}\n")
 
@@ -82,38 +75,51 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]):
     )
     print(f"Table:\n{table_text}\n")
 
-    with open(path, encoding="utf-8") as f:
+    with path.open(encoding="utf-8") as f:
         readme_text = f.read()
 
     print(f"Replacing `{path}` file with the badges and the table...")
 
     # Place badges
-    BADGES_BEGIN_MARK = r"<!-- Badges of stars: begin -->"
-    BADGES_END_MARK = r"<!-- Badges of stars: end -->"
-    badges_begin_pos = readme_text.index(BADGES_BEGIN_MARK) + len(BADGES_BEGIN_MARK) + 1
-    badges_end_pos = readme_text.index(BADGES_END_MARK)
+    badges_begin_mark = r"<!-- Badges of stars: begin -->"
+    badges_end_mark = r"<!-- Badges of stars: end -->"
+    badges_begin_pos = readme_text.index(badges_begin_mark) + len(badges_begin_mark) + 1
+    badges_end_pos = readme_text.index(badges_end_mark)
     readme_text = readme_text[:badges_begin_pos] + badges_text + readme_text[badges_end_pos:]
 
+    # Place sum of stars
+    sum_of_stars = sum(stars for _, stars in stars_data)
+    print(f"Replacing `{path}` file with sum of stars: {sum_of_stars}")
+    sum_of_stars_mark = r"<!-- sum of stars -->"
+    sum_of_stars_pos = readme_text.find(sum_of_stars_mark)
+    readme_text = (
+        readme_text[:sum_of_stars_pos]
+        + f"(⭐ {sum_of_stars})"
+        + readme_text[sum_of_stars_pos + len(sum_of_stars_mark) :]
+    )
+
     # Place table
-    TABLE_BEGIN_MARK = r"<!-- Table summary of years: begin -->"
-    TABLE_END_MARK = r"<!-- Table summary of years: end -->"
-    table_begin_pos = readme_text.index(TABLE_BEGIN_MARK) + len(TABLE_BEGIN_MARK) + 1
-    table_end_pos = readme_text.index(TABLE_END_MARK)
+    table_begin_mark = r"<!-- Table summary of years: begin -->"
+    table_end_mark = r"<!-- Table summary of years: end -->"
+    table_begin_pos = readme_text.index(table_begin_mark) + len(table_begin_mark) + 1
+    table_end_pos = readme_text.index(table_end_mark)
     readme_text = readme_text[:table_begin_pos] + table_text + readme_text[table_end_pos:]
 
     print(f"Saving `{path}` file...")
-    with open(path, "w", encoding="utf-8") as f:
+    with path.open("w", encoding="utf-8") as f:
         f.write(readme_text)
 
     print(f"File `{path}` updated successfully with the number of AoC stars!")
 
 
-def main():
-    """Main entry point for updating the readme file with Advent of Code stars.
+def main() -> None:
+    """
+    Update the readme file with Advent of Code stars.
 
     This function retrieves the stars data for each year and updates the readme file with the latest
     information, ensuring that the displayed badges and table contains the correct number of stars
     for each year.
+
     """
     stars_data = get_stars_data(Path(YEAR_DIR))
     update_readme_file(README_FILE_PATH, stars_data)

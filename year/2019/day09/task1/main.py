@@ -1,6 +1,6 @@
 """
 Author: Jose A. Romero
-Puzzle: Advent of Code (year=2019 ; day=5 ; task=2)
+Puzzle: Advent of Code (year=2019 ; day=9 ; task=1)
 """
 
 import sys
@@ -13,10 +13,17 @@ class IntCode:
         self.memory = defaultdict(int, enumerate(memory))
         self.initial_input = initial_input
         self.idx = 0
+        self.base = 0
 
     def get_param(self, param: int) -> int:
         mode = (self.memory[self.idx] // (10 ** (1 + param))) % 10
-        return self.memory[self.idx + param] if mode == 0 else self.idx + param
+        if mode == 0:
+            return self.memory[self.idx + param]
+
+        if mode == 1:
+            return self.idx + param
+
+        return self.base + self.memory[self.idx + param]
 
     def execute_arithmetic(self) -> None:  # opcode = 1, 2, 7, 8
         param1 = self.memory[self.get_param(1)]
@@ -59,6 +66,11 @@ class IntCode:
             else self.idx + 3
         )
 
+    def execute_adjustment(self) -> None:  # opcode = 9
+        param1 = self.memory[self.get_param(1)]
+        self.base += param1
+        self.idx += 2
+
     def run(self) -> Iterable[int]:
         while self.idx < len(self.memory) and self.memory[self.idx] != 99:
             match self.memory[self.idx] % 10:
@@ -74,11 +86,14 @@ class IntCode:
                 case 5 | 6:
                     self.execute_jump()
 
+                case 9:
+                    self.execute_adjustment()
+
 
 def main() -> None:
     memory = [int(n) for n in sys.stdin.readline().split(",")]
-    intcode = IntCode(memory, 5)
-    print(next(intcode.run()))
+    intcode = IntCode(memory, 1)
+    print(",".join(str(x) for x in intcode.run()))
 
 
 if __name__ == "__main__":
