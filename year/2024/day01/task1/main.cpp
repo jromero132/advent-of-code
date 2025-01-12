@@ -1,6 +1,6 @@
 /*
-Author : Jose A.Romero
-Puzzle : Advent of Code(year=2024 ; day=1 ; task=1)
+Author: Jose A. Romero
+Puzzle: Advent of Code (year=2024 ; day=1 ; task=1)
 */
 
 #include <bits/stdc++.h>
@@ -9,7 +9,8 @@ Puzzle : Advent of Code(year=2024 ; day=1 ; task=1)
 
 using namespace std;
 
-int main() {
+int main()
+{
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     int a, b;
     vector<int> group1, group2;

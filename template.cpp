@@ -1,6 +1,6 @@
 /*
-Author : Jose A.Romero
-Puzzle : Advent of Code(year=`year` ; day=`day` ; task=`task`)
+Author: Jose A. Romero
+Puzzle: Advent of Code (year=`year` ; day=`day` ; task=`task`)
 */
 
 #include <bits/stdc++.h>

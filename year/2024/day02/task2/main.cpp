@@ -1,6 +1,6 @@
 /*
-Author : Jose A.Romero
-Puzzle : Advent of Code(year=2024 ; day=2 ; task=2)
+Author: Jose A. Romero
+Puzzle: Advent of Code (year=2024 ; day=2 ; task=2)
 */
 
 #include <bits/stdc++.h>
@@ -9,7 +9,8 @@ Puzzle : Advent of Code(year=2024 ; day=2 ; task=2)
 
 using namespace std;
 
-bool is_safe_report(vector<int> &nums, int pos) {
+bool is_safe_report(vector<int> &nums, int pos)
+{
     int last = pos == 0;
     bool cond1 = true, cond2 = true;
     for (int i = last + 1; i < nums.size(); ++i) {
@@ -23,7 +24,8 @@ bool is_safe_report(vector<int> &nums, int pos) {
     return cond1 || cond2;
 }
 
-int main() {
+int main()
+{
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     string line;
     int ans = 0;
