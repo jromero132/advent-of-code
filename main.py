@@ -614,7 +614,7 @@ def test(args: argparse.Namespace) -> None:
         """
         if lang in {"py", "python"}:
             with inp.open(encoding="utf-8") as in_file:
-                return subprocess.check_output(["python", str(sol_file)], stdin=in_file).strip()
+                return subprocess.check_output(["python", str(sol_file)], stdin=in_file).rstrip()
 
         if lang in {"cpp", "c++"}:
             executable = sol_file.with_suffix(".exe")
@@ -625,7 +625,7 @@ def test(args: argparse.Namespace) -> None:
                 process = subprocess.check_output(
                     [str(executable), str(sol_file)],
                     stdin=in_file,
-                ).strip()
+                ).rstrip()
             executable.unlink()
             return process
 
