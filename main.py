@@ -9,6 +9,8 @@ The module defines various subcommands, each associated with specific actions, a
 parsing to handle user inputs effectively.
 """
 
+from __future__ import annotations
+
 import argparse
 import datetime
 import inspect
@@ -27,6 +29,13 @@ DAY_PATH = "year/{year}/day{day:02}"
 TASK_PATH = DAY_PATH + "/task{task}"
 TESTS_PATH = f"{TASK_PATH}/tests"
 REQUESTS_TIMEOUT = 5  # 5 seconds
+
+LANG_EXTENSION = {
+    "py": "py",
+    "python": "py",
+    "cpp": "cpp",
+    "c++": "cpp",
+}
 
 load_dotenv()
 
@@ -414,8 +423,11 @@ def create(args: argparse.Namespace) -> None:
         FileNotFoundError: If the specified template file does not exist.
 
     """
+    if not args.template:
+        args.template = f"template.{LANG_EXTENSION[args.lang]}"
+
     template_content = ""
-    if args.template and (template := Path(args.template)).exists():
+    if (template := Path(args.template)).exists():
         with template.open(encoding="utf-8") as f:
             template_content = f.read().replace("`year`", str(args.year))
             template_content = template_content.replace("`day`", str(args.day))
@@ -429,7 +441,7 @@ def create(args: argparse.Namespace) -> None:
             f.write(md)
 
         code_content = template_content.replace("`task`", str(i))
-        if not (py_file := task_dir / "main.py").exists():
+        if not (py_file := task_dir / f"main.{LANG_EXTENSION[args.lang]}").exists():
             with py_file.open("w", encoding="utf-8") as f:
                 f.write(code_content)
 
@@ -461,6 +473,14 @@ def create_cli(subparsers: argparse._SubParsersAction) -> None:
     parser: argparse.ArgumentParser = subparsers.add_parser(
         "create",
         help="Create a new Advent of Code challenge setup.",
+    )
+    parser.add_argument(
+        "-l",
+        "--lang",
+        "--language",
+        type=str,
+        default="py",
+        help="The language of the solution you want to test. Defaults to python.",
     )
     parser.add_argument(
         "-y",
@@ -576,7 +596,7 @@ def test(args: argparse.Namespace) -> None:
 
     """
 
-    def get_code_output(sol_file: Path, inp: Path) -> bytes:
+    def get_code_output(sol_file: Path, inp: Path, lang: str) -> bytes:
         """
         Execute a Python solution file with input from a specified file.
 
@@ -592,36 +612,58 @@ def test(args: argparse.Namespace) -> None:
             bytes: The output produced by the executed script.
 
         """
-        with inp.open(encoding="utf-8") as in_file:
-            return subprocess.check_output(["python", str(sol_file)], stdin=in_file).strip()
+        if lang in {"py", "python"}:
+            with inp.open(encoding="utf-8") as in_file:
+                return subprocess.check_output(["python", str(sol_file)], stdin=in_file).strip()
+
+        if lang in {"cpp", "c++"}:
+            executable = sol_file.with_suffix(".exe")
+            subprocess.call(
+                ["g++", "-Wl,-z,stack-size=268435456", "-O2", str(sol_file), "-o", str(executable)],
+            )
+            with inp.open(encoding="utf-8") as in_file:
+                process = subprocess.check_output(
+                    [str(executable), str(sol_file)],
+                    stdin=in_file,
+                ).strip()
+            executable.unlink()
+            return process
+
+        return b""
+
+    def is_correct_solution(sol_file: Path, input_file: Path, output_file: Path) -> bool:
+        print(f"  - {input_file.name:<8}", end=" ")
+        ans = get_code_output(sol_file, input_file, args.lang)
+        with output_file.open("rb") as out_file:
+            sol = out_file.read().strip()
+
+        if ans == sol:
+            print(font_color_green("OK"))
+            return True
+
+        print(
+            font_color_red("FAIL")
+            + " ["
+            + font_color_orange(f"found={ans.decode('utf-8')}")
+            + " ; "
+            + font_color_blue(f"expected={sol.decode('utf8')}")
+            + "]",
+        )
+        return False
 
     day_dir = Path(DAY_PATH.format(year=args.year, day=args.day)).absolute()
     task_dir = Path(TASK_PATH.format(year=args.year, day=args.day, task=args.task)).absolute()
     tests_dir = Path(TESTS_PATH.format(year=args.year, day=args.day, task=args.task)).absolute()
-    sol_file = task_dir / "main.py"
+
+    sol_file = task_dir / f"main.{LANG_EXTENSION[args.lang]}"
+
     failed_testcases = 0
     no_tests = True
     print(f"Start testing AOC y{args.year}/d{args.day}/t{args.task}...")
     if tests_dir.exists():
         for inp in sorted(f for f in tests_dir.iterdir() if f.suffix == ".in"):
             no_tests = False
-            print(f"  - {inp.name}    ", end="")
-            ans = get_code_output(sol_file, inp)
-            with inp.with_suffix(".out").open("rb") as out_file:
-                sol = out_file.read().strip()
-
-            if ans == sol:
-                print(font_color_green("OK"))
-
-            else:
-                print(
-                    font_color_red("FAIL")
-                    + " ["
-                    + font_color_orange(f"found={ans.decode('utf-8')}")
-                    + " ; "
-                    + font_color_blue(f"expected={sol.decode('utf8')}")
-                    + "]",
-                )
+            if not is_correct_solution(sol_file, inp, inp.with_suffix(".out")):
                 failed_testcases += 1
                 if not args.continue_on_failure:
                     break
@@ -630,11 +672,8 @@ def test(args: argparse.Namespace) -> None:
         if no_tests:
             print(font_color_orange("No test files found!"))
 
-        else:
-            print(font_color_green("All tests passed!"))
-
         if args.answer or args.submit:
-            ans_decoded = get_code_output(sol_file, day_dir / "task.in").decode("utf-8")
+            ans_decoded = get_code_output(sol_file, day_dir / "task.in", args.lang).decode("utf-8")
             with Path(day_dir / f"task{args.task}.out").open("w", encoding="utf-8") as f:
                 f.write(ans_decoded)
                 f.write("\n")
@@ -652,6 +691,9 @@ def test(args: argparse.Namespace) -> None:
 
                     case -1:
                         print(font_color_orange("This task was already solved!"))
+
+        elif (day_dir / f"task{args.task}.out").stat().st_size != 0:
+            is_correct_solution(sol_file, day_dir / "task.in", day_dir / f"task{args.task}.out")
 
     else:
         print(
@@ -678,6 +720,14 @@ def test_cli(subparsers: argparse._SubParsersAction) -> None:
     parser: argparse.ArgumentParser = subparsers.add_parser(
         "test",
         help="Run tests for one Advent of Code challenge.",
+    )
+    parser.add_argument(
+        "-l",
+        "--lang",
+        "--language",
+        type=str,
+        default="py",
+        help="The language of the solution you want to test. Defaults to python.",
     )
     parser.add_argument(
         "-y",
