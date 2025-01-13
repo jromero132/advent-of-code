@@ -92,7 +92,7 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]) -> None:
     print(f"Replacing `{path}` file with sum of stars: {sum_of_stars}")
     sum_of_stars_marks = (
         (r"<!-- sum of stars 1: begin -->", r"<!-- sum of stars 1: end -->"),
-        (r"<!-- sum of stars 2: begin -->", r"<!-- sum of stars 1: end -->"),
+        (r"<!-- sum of stars 2: begin -->", r"<!-- sum of stars 2: end -->"),
     )
     for begin_mark, end_mark in sum_of_stars_marks:
         begin_pos = readme_text.find(begin_mark) + len(begin_mark)
