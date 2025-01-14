@@ -1,4 +1,4 @@
-# 🎄 Advent of Code Solutions <!-- sum of stars 1: begin -->(⭐ 232)<!-- sum of stars 1: end --> and CLI 🎄
+# 🎄 Advent of Code Solutions <!-- sum of stars 1: begin -->(⭐ 236)<!-- sum of stars 1: end --> and CLI 🎄
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](<https://buymeacoffee.com/jromero132> "Buy Me a Coffee - jromero132")
 [![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](<https://adventofcode.com/> "Advent of Code homepage")
@@ -12,14 +12,14 @@
 [![AoC 2017](https://img.shields.io/badge/2017-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2017)
 [![AoC 2018](https://img.shields.io/badge/2018-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2018)
 [![AoC 2019](https://img.shields.io/badge/2019-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2019)  
-[![AoC 2020](https://img.shields.io/badge/2020-⭐%2018-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
+[![AoC 2020](https://img.shields.io/badge/2020-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
 [![AoC 2021](https://img.shields.io/badge/2021-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
 [![AoC 2022](https://img.shields.io/badge/2022-⭐%2028-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
-[![AoC 2023](https://img.shields.io/badge/2023-⭐%2016-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
+[![AoC 2023](https://img.shields.io/badge/2023-⭐%2018-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 [![AoC 2024](https://img.shields.io/badge/2024-⭐%2050-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2024)  
 <!-- Badges of stars: end -->
 ---
-This project contains all my solutions <!-- sum of stars 2: begin -->(⭐ 232)<!-- sum of stars 2: end --> for
+This project contains all my solutions <!-- sum of stars 2: begin -->(⭐ 236)<!-- sum of stars 2: end --> for
 [Advent of Code](https://adventofcode.com/) challenges.
 
 > [!TIP]
@@ -68,16 +68,16 @@ star ⭐️ so the maximum amount of stars for a year is `50`.
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
 | :--: | :---: | :--: |
-| [2015](year/2015) | ⭐️20  | <https://adventofcode.com/2015> |
-| [2016](year/2016) | ⭐️20  | <https://adventofcode.com/2016> |
-| [2017](year/2017) | ⭐️20  | <https://adventofcode.com/2017> |
-| [2018](year/2018) | ⭐️20  | <https://adventofcode.com/2018> |
-| [2019](year/2019) | ⭐️20  | <https://adventofcode.com/2019> |
-| [2020](year/2020) | ⭐️18  | <https://adventofcode.com/2020> |
-| [2021](year/2021) | ⭐️20  | <https://adventofcode.com/2021> |
-| [2022](year/2022) | ⭐️28  | <https://adventofcode.com/2022> |
-| [2023](year/2023) | ⭐️16  | <https://adventofcode.com/2023> |
-| [2024](year/2024) | ⭐️50  | <https://adventofcode.com/2024> |
+| [2015](year/2015) | ⭐️20  | https://adventofcode.com/2015 |
+| [2016](year/2016) | ⭐️20  | https://adventofcode.com/2016 |
+| [2017](year/2017) | ⭐️20  | https://adventofcode.com/2017 |
+| [2018](year/2018) | ⭐️20  | https://adventofcode.com/2018 |
+| [2019](year/2019) | ⭐️20  | https://adventofcode.com/2019 |
+| [2020](year/2020) | ⭐️20  | https://adventofcode.com/2020 |
+| [2021](year/2021) | ⭐️20  | https://adventofcode.com/2021 |
+| [2022](year/2022) | ⭐️28  | https://adventofcode.com/2022 |
+| [2023](year/2023) | ⭐️18  | https://adventofcode.com/2023 |
+| [2024](year/2024) | ⭐️50  | https://adventofcode.com/2024 |
 <!-- Table summary of years: end -->
 
 ## Features
