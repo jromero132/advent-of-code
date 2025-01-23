@@ -20,7 +20,7 @@ def polygon_area(vertices: list[list[int]]) -> float:  # shoelace theorem
     )
 
 
-def interior_points(points) -> int:  # Pick's theorem
+def interior_points(points: list[list[int]]) -> int:  # Pick's theorem
     return int(polygon_area(points) - len(points) / 2) + 1
 
 
