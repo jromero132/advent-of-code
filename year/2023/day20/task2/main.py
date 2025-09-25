@@ -8,6 +8,19 @@ from enum import Enum
 from math import lcm
 
 
+# Note: This approach assumes that there is only one module that outputs to
+# "rx" and it is a conjunction module. The module that outputs to "rx" is the
+# real target module.
+
+# Besides this, there are only 4 modules that output to the target module
+# and these 4 modules are actually 4 independent cyclical subgraphs that all
+# feed into the "rx" module.
+
+# So the problem can be simplified to "when do all the 4 modules pointing to
+# rx send a high pulse in the same round?". So we can track the cycles' length
+# and compute their least common multiple (LCM).
+
+
 class ModuleState(Enum):
     OFF = 0
     ON = 1
@@ -102,6 +115,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-# 4013 {'nx': 3851, 'sp': 4013, 'cc': 4001, 'jq': 3911}
-# task 2: 241823802412393
