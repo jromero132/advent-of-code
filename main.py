@@ -678,7 +678,7 @@ def test(args: argparse.Namespace) -> None:
                 f.write(ans_decoded)
                 f.write("\n")
 
-            print(f"Answer:{'\n' if '\n' in ans_decoded else ' '}{font_color_blue(ans_decoded)}")
+            print("Answer:", ('\n' if '\n' in ans_decoded else ' '), font_color_blue(ans_decoded), sep="")
             pyperclip.copy(ans_decoded)
 
             if args.submit:
