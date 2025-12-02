@@ -450,11 +450,15 @@ def create(args: argparse.Namespace) -> None:
         (test_dir / "01.in").touch()
         (test_dir / "01.out").touch()
 
-    with Path(f"{DAY_PATH.format(year=args.year, day=args.day)}/task.in").open(
-        "w",
-        encoding="utf-8",
-    ) as f:
+    task_files_dir = Path(f"{DAY_PATH.format(year=args.year, day=args.day)}")
+    with (task_files_dir / "task.in").open("w", encoding="utf-8") as f:
         f.write(get_input(args.year, args.day))
+
+    with (task_files_dir / "task1.out").open("a", encoding="utf-8"):
+        pass
+
+    with (task_files_dir / "task2.out").open("a", encoding="utf-8"):
+        pass
 
 
 def create_cli(subparsers: argparse._SubParsersAction) -> None:
@@ -692,8 +696,16 @@ def test(args: argparse.Namespace) -> None:
                     case -1:
                         print(font_color_orange("This task was already solved!"))
 
-        elif (day_dir / f"task{args.task}.out").stat().st_size != 0:
+        elif (day_dir / f"task{args.task}.out").exists() and (day_dir / f"task{args.task}.out").stat().st_size != 0:
             is_correct_solution(sol_file, day_dir / "task.in", day_dir / f"task{args.task}.out")
+
+        else:
+            print(
+                font_color_orange(
+                    f"No answer file found for task {args.task}. Skipping solution check.\n"
+                    "If you want to solve the task, use the --answer option.",
+                )
+            )
 
     else:
         print(
