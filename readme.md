@@ -115,7 +115,9 @@ echo "AOC_COOKIE=<your-aoc-session-cookie>" > .env
 
 > [!NOTE]
 > The `AOC_COOKIE` is your Advent of Code session cookie. You can search for it pressing `F12`
-and going into the `Network` tab in your browser.
+and going into the `Network` tab in your browser.  
+> See below image for reference:  
+> ![Cookie Image](resources/cookie.png)
 
 ## Usage
 
@@ -124,9 +126,24 @@ see its usage.
 
 ### Commands
 
-- `create`: Create a new Advent of Code challenge.
-- `maketests`: Create test files for one Advent of Code challenge.
-- `test`: Run tests for one Advent of Code challenge.
+- `create`: Create a new Advent of Code challenge.  
+  Current supported languages: (py | python) (cpp | c++)  
+  *Examples:*
+    * `python aoc.py create -d 13`: It creates the Python solution for day 13 of the current year.
+    * `python aoc.py create -y 2021 -d 13`: It creates the Python solution for day 13 of year 2021.
+    * `python aoc.py create -y 2021 -d 13 -l cpp`: It creates the C++ solution for day 13 of year 2021.
+- `test`: Run tests for one Advent of Code challenge.  
+  Current supported languages: (py | python) (cpp | c++)  
+  *Examples:*
+    * `python aoc.py test -d 13`: It tests the Python solution for task 1 of day 13 of the current year.
+    * `python aoc.py test -y 2021 -d 13`: It tests the Python solution for task 1 of day 13 of year 2021.
+    * `python aoc.py test -y 2021 -d 13 -t 2`: It tests the Python solution for task 2 of day 13 of year 2021.
+    * `python aoc.py test -y 2021 -d 13 -t 2 -l cpp`: It tests the C++ solution for task 2 of day 13 of year 2021.
+- `maketests`: Create test files for one Advent of Code challenge.  
+  This barely creates empty files, so, pretty much not used ;)  
+  *Examples:*
+    * `python aoc.py maketests -n 2 -d 13 -t 1`: It creates 2 tests for task 1 of day 13 of the current year.
+    * `python aoc.py maketests -n 2 -y 2021 -d 13 -t 1`: It creates 2 tests for task 1 of day 13 of year 2021.
 
 ## Solutions
 
@@ -139,7 +156,7 @@ Each solution is organized by year, day and task, allowing easy access to the im
 
 ```tree
 advent-of-code
-├── ...
+├── ⋮
 ├── year
 │   ├── 2015
 │   │   ├── day01
@@ -147,21 +164,25 @@ advent-of-code
 │   │   │   │   ├── tests
 │   │   │   │   │   ├── 01.in
 │   │   │   │   │   ├── 01.out
-│   │   │   │   │   └── ...
+│   │   │   │   │   └── ⋮
 │   │   │   │   ├── description.md
 │   │   │   │   └── main.py
 │   │   │   ├── task2
-│   │   │   │   └── ...
+│   │   │   │   └── ⋮
 │   │   │   ├── task.in
 │   │   │   ├── task1.out
 │   │   │   └── task2.out
-│   │   ├── ...
+│   │   ├── ⋮
+│   │   ├── ⋮
+│   │   ├── ⋮
 │   │   └── day25
-│   │       └── ...
-│   ├── ...
-│   └── 2023
-│       └── ...
-└── ...
+│   │       └── ⋮
+│   ├── ⋮
+│   ├── ⋮
+│   ├── ⋮
+│   └── 2025
+│       └── ⋮
+└── ⋮
 ```
 
 `year/**`: Contains subdirectories for each year of challenges. For instance, from 2015 to 2023.

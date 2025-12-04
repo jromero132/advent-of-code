@@ -17,6 +17,7 @@ import inspect
 import os
 import subprocess
 import sys
+from collections import defaultdict
 from http import HTTPStatus
 from pathlib import Path
 
@@ -29,7 +30,9 @@ DAY_PATH = "year/{year}/day{day:02}"
 TASK_PATH = DAY_PATH + "/task{task}"
 TESTS_PATH = f"{TASK_PATH}/tests"
 REQUESTS_TIMEOUT = 5  # 5 seconds
+REPO_URL = "https://github.com/jromero132/advent-of-code"
 
+# TODO: Add more supported languages
 LANG_EXTENSION = {
     "py": "py",
     "python": "py",
@@ -127,6 +130,28 @@ def font_color_blue(txt: str) -> str:
     return font_color(txt, "\033[94m")
 
 
+def get_supported_languages_str() -> str:
+    """
+    Generate a user-friendly string listing all supported programming languages.
+
+    The function groups language names/aliases by their file extension and
+    formats them as (alias1 | alias2 | ...) for each extension group.
+
+    Example:
+        >>> get_supported_languages_str()
+        'Current supported languages: (py | python) (cpp | c++)'
+
+    Returns:
+        str: A formatted string showing supported languages grouped by extension,
+            prefixed with "Current supported languages: ".
+    """
+    lang_group = defaultdict(list)
+    for lang, group in LANG_EXTENSION.items():
+        lang_group[group].append(lang)
+
+    return "Current supported languages: " + " ".join(f"({ ' | '.join(aliases)})" for aliases in lang_group.values())
+
+
 def get_url(year: int, day: int) -> str:
     """
     Construct the URL for a specific Advent of Code challenge.
@@ -182,11 +207,12 @@ def get_response(url: str, data: dict | None = None) -> requests.Response:
     )
 
     if response.status_code != HTTPStatus.OK:
-        error_msg = (
-            f"Querying the url {url} resulted in status code {response.status_code} with the "
+        print(
+            font_color_red("ERROR:"),
+            f"Querying the url {url} resulted in status code {response.status_code} with the",
             f"following text: {response.text}"
         )
-        raise ValueError(error_msg)
+        exit(1)
 
     return response
 
@@ -339,7 +365,12 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                     tag.insert_after("*")
 
                 else:
-                    error_msg = f"Missing condition for tag: {tag}"
+                    error_msg = (
+                        font_color_red("ERROR:")
+                        + f" Missing condition for tag: {tag}. "
+                        + font_color_blue("Please report this in the repo: ")
+                        + font_color_orange(REPO_URL)
+                    )
                     raise ValueError(error_msg)
 
                 tag.unwrap()
@@ -370,7 +401,12 @@ def convert_html_to_markdown(tag: bs4.element.Tag) -> str:
                 pass
 
             case _:
-                error_msg = f"Missing condition for tag: {tag}"
+                error_msg = (
+                    font_color_red("ERROR:")
+                    + f" Missing condition for tag: {tag}. "
+                    + font_color_blue("Please report this in the repo: ")
+                    + font_color_orange(REPO_URL)
+                )
                 raise ValueError(error_msg)
 
     html_tags_to_markdown(root_tag)
@@ -423,8 +459,18 @@ def create(args: argparse.Namespace) -> None:
         FileNotFoundError: If the specified template file does not exist.
 
     """
+
+    if args.lang not in LANG_EXTENSION:
+        print(
+            font_color_red("ERROR:"),
+            "Sorry, but that language is not supported yet.",
+            get_supported_languages_str(),
+        )
+        print("For more information please run with the", font_color_blue("--help"), "flag.")
+        exit(1)
+
     if not args.template:
-        args.template = f"template.{LANG_EXTENSION[args.lang]}"
+        args.template = f"templates/template.{LANG_EXTENSION[args.lang]}"
 
     template_content = ""
     if (template := Path(args.template)).exists():
@@ -484,7 +530,7 @@ def create_cli(subparsers: argparse._SubParsersAction) -> None:
         "--language",
         type=str,
         default="py",
-        help="The language of the solution you want to test. Defaults to python.",
+        help="The language of the solution you want to test. Defaults to python. " + get_supported_languages_str(),
     )
     parser.add_argument(
         "-y",
@@ -633,6 +679,8 @@ def test(args: argparse.Namespace) -> None:
             executable.unlink()
             return process
 
+        # TODO: Add more supported languages
+
         return b""
 
     def is_correct_solution(sol_file: Path, input_file: Path, output_file: Path) -> bool:
@@ -654,6 +702,16 @@ def test(args: argparse.Namespace) -> None:
             + "]",
         )
         return False
+
+
+    if args.lang not in LANG_EXTENSION:
+        print(
+            font_color_red("ERROR:"),
+            "Sorry, but that language is not supported yet.",
+            get_supported_languages_str(),
+        )
+        print("For more information please run with the", font_color_blue("--help"), "flag.")
+        exit(1)
 
     day_dir = Path(DAY_PATH.format(year=args.year, day=args.day)).absolute()
     task_dir = Path(TASK_PATH.format(year=args.year, day=args.day, task=args.task)).absolute()
@@ -739,7 +797,7 @@ def test_cli(subparsers: argparse._SubParsersAction) -> None:
         "--language",
         type=str,
         default="py",
-        help="The language of the solution you want to test. Defaults to python.",
+        help="The language of the solution you want to test. Defaults to python. " + get_supported_languages_str(),
     )
     parser.add_argument(
         "-y",
@@ -806,6 +864,7 @@ def parse_args() -> argparse.Namespace:
 
     subparsers = parser.add_subparsers(dest="command")
     for name, obj in inspect.getmembers(sys.modules[__name__]):
+        # Find method with name <command>_cli. E.g.: create_cli, test_cli, ...
         if inspect.isfunction(obj) and name.endswith("_cli"):
             obj(subparsers)
 
