@@ -63,8 +63,8 @@ test files, and provides solutions for various tasks.
 
 ## 🎄 Stats
 
-For every year, the Advent of Code calendar has `25` challenges with `2` tasks per challenge. Every task gives you a
-star ⭐️ so the maximum amount of stars for a year is `50`.
+From 2015 to 2024, the Advent of Code calendar had `25` challenges with `2` tasks per challenge, earning you up to `50`
+stars ⭐️ per year. Starting from 2025, it will have `12` challenges per year, for a maximum of `24` stars annually.
 
 <!-- Table summary of years: begin -->
 | Year | Stars | Advent of Code Link |
