@@ -5,7 +5,6 @@
 [![Made with Python](https://img.shields.io/badge/Python->=3.10-blue?logo=python&logoColor=white)](<https://python.org> "Go to Python homepage")
 ![Last commit](https://img.shields.io/github/last-commit/jromero132/advent-of-code "Last commit")
 ![Language count](https://img.shields.io/github/languages/count/jromero132/advent-of-code?label=Languages)
-
 ![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fjromero132%2Fadvent-of-code&amp;label=Visitors&amp;icon=heart-fill&amp;color=%23198754&amp;message=&amp;style=flat&amp;tz=UTC)
 
 ---
