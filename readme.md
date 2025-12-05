@@ -1,4 +1,4 @@
-# 🎄 Advent of Code Solutions <!-- sum of stars 1: begin -->(⭐ 268)<!-- sum of stars 1: end --> and CLI 🎄
+# 🎄 Advent of Code Solutions <!-- sum of stars 1: begin -->(⭐ 270)<!-- sum of stars 1: end --> and CLI 🎄
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buy-me-a-coffee&logoColor=black)](<https://buymeacoffee.com/jromero132> "Buy Me a Coffee - jromero132")
 [![Advent of Code](https://img.shields.io/badge/Advent%20of%20Code-ffff66?logo=adventofcode&logoColor=000)](<https://adventofcode.com/> "Advent of Code homepage")
@@ -15,12 +15,12 @@
 [![AoC 2020](https://img.shields.io/badge/2020-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2020)
 [![AoC 2021](https://img.shields.io/badge/2021-⭐%2020-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2021)
 [![AoC 2022](https://img.shields.io/badge/2022-⭐%2028-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2022)
-[![AoC 2023](https://img.shields.io/badge/2023-⭐%2042-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
+[![AoC 2023](https://img.shields.io/badge/2023-⭐%2044-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2023)
 [![AoC 2024](https://img.shields.io/badge/2024-⭐%2050-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2024)  
 [![AoC 2025](https://img.shields.io/badge/2025-⭐%208-gray?logo=adventofcode&labelColor=8a2be2)](https://adventofcode.com/2025)
 <!-- Badges of stars: end -->
 ---
-This project contains all my solutions <!-- sum of stars 2: begin -->(⭐ 268)<!-- sum of stars 2: end --> for
+This project contains all my solutions <!-- sum of stars 2: begin -->(⭐ 270)<!-- sum of stars 2: end --> for
 [Advent of Code](https://adventofcode.com/) challenges.
 
 > [!TIP]
@@ -77,7 +77,7 @@ stars ⭐️ per year. Starting from 2025, it will have `12` challenges per year
 | [2020](year/2020) | ⭐️20  | https://adventofcode.com/2020 |
 | [2021](year/2021) | ⭐️20  | https://adventofcode.com/2021 |
 | [2022](year/2022) | ⭐️28  | https://adventofcode.com/2022 |
-| [2023](year/2023) | ⭐️42  | https://adventofcode.com/2023 |
+| [2023](year/2023) | ⭐️44  | https://adventofcode.com/2023 |
 | [2024](year/2024) | ⭐️50  | https://adventofcode.com/2024 |
 | [2025](year/2025) | ⭐️8  | https://adventofcode.com/2025 |
 <!-- Table summary of years: end -->
