@@ -9,6 +9,7 @@ challenges.
 
 from pathlib import Path
 
+YEAR_STATS_PER_ROW = 6
 YEAR_DIR = "year"
 README_FILE_PATH = Path("readme.md")
 
@@ -64,7 +65,7 @@ def update_readme_file(path: Path, stars_data: list[tuple[str, int]]) -> None:
     badges_text = "".join(
         f"[![AoC {year}]("
         f"https://img.shields.io/badge/{year}-⭐%20{stars}-gray?logo=adventofcode&labelColor=8a2be2"
-        f")](https://adventofcode.com/{year}){'  ' if i % 5 == 0 else ''}\n"
+        f")](https://adventofcode.com/{year}){'  ' if i % YEAR_STATS_PER_ROW == 0 else ''}\n"
         for i, (year, stars) in enumerate(stars_data, start=1)
     )
     print(f"Badges:\n{badges_text}\n")
